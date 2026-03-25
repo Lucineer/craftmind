@@ -5,6 +5,7 @@
 
 const mineflayer = require('mineflayer');
 const { pathfinder, Movements, goals } = require('mineflayer-pathfinder');
+const { PERSONALITIES, BrainHandler } = require('./brain');
 
 function createBot(options) {
   const bot = mineflayer.createBot({
@@ -13,6 +14,19 @@ function createBot(options) {
     username: options.username || 'CraftBot',
     version: options.version || '1.21.4',
     hideErrors: false,
+  });
+
+  // Set up LLM brain if personality is specified
+  let brain = null;
+  const personalityName = options.personality || options.username?.toLowerCase();
+  const personality = PERSONALITIES[personalityName];
+  if (personality && options.useBrain !== false) {
+    brain = new BrainHandler(bot, personality, {
+      apiKey: options.llmApiKey,
+      model: options.llmModel || 'glm-4-flash',
+    });
+    bot.craftmind._brain = brain;
+  }
   });
 
   bot.loadPlugin(pathfinder);
@@ -45,6 +59,37 @@ function createBot(options) {
   bot.on('chat', (username, message) => {
     if (username === bot.username) return;
     console.log(`[CHAT] <${username}> ${message}`);
+
+    // If brain is active, let LLM handle it
+    if (brain && !message.startsWith('!')) {
+      brain.handleChat(username, message);
+      if (options.onChat) options.onChat(bot, username, message);
+      return;
+    }
+
+    // Commands (prefix with !) still work with hardcoded handlers
+    const cleanMessage = message.replace(/^!/, '').toLowerCase();
+    const parts = cleanMessage.split(' ');
+    const cmd = parts[0];
+
+    if (cmd === 'follow' && parts[1]) {
+      bot.craftmind.followPlayer(parts[1]);
+    } else if (cmd === 'stop') {
+      bot.craftmind.stop();
+    } else if (cmd === 'where') {
+      const pos = bot.craftmind.position();
+      bot.chat(`I'm at ${pos.x}, ${pos.y}, ${pos.z}`);
+    } else if (cmd === 'inventory' || cmd === 'inv') {
+      const inv = bot.craftmind.inventorySummary();
+      const items = Object.entries(inv).map(([k,v]) => `${k}: ${v}`).join(', ');
+      bot.chat(`I have: ${items || 'nothing'}`);
+    } else if (cmd === 'look' && parts[1]) {
+      bot.craftmind.lookAt(parts[1]);
+    } else if (cmd === 'hello' || cmd === 'hi') {
+      if (personality) bot.chat(`Hey ${username}!`);
+      else bot.chat(`Hey ${username}! What's up?`);
+    }
+
     if (options.onChat) options.onChat(bot, username, message);
   });
 
@@ -176,7 +221,7 @@ if (require.main === module) {
   const args = process.argv.slice(2);
   const host = args[0] || 'localhost';
   const port = parseInt(args[1]) || 25565;
-  const username = args[2] || 'CraftBot';
+  const username = args[2] || 'Cody';
 
   console.log(`Connecting to ${host}:${port} as ${username}...`);
   
@@ -184,34 +229,32 @@ if (require.main === module) {
     host,
     port,
     username,
-    version: '1.21.4',
+    personality: username.toLowerCase(),
+    llmApiKey: process.env.ZAI_API_KEY,
+    useBrain: true,
     onChat: (bot, username, message) => {
-      // Simple command handling
-      const parts = message.toLowerCase().split(' ');
-      const cmd = parts[0];
-
-      if (cmd === 'follow' && parts[1]) {
-        bot.craftmind.followPlayer(parts[1]);
-      } else if (cmd === 'stop') {
-        bot.craftmind.stop();
-      } else if (cmd === 'where') {
-        const pos = bot.craftmind.position();
-        bot.chat(`I'm at ${pos.x}, ${pos.y}, ${pos.z}`);
-      } else if (cmd === 'inventory' || cmd === 'inv') {
-        const inv = bot.craftmind.inventorySummary();
-        const items = Object.entries(inv).map(([k,v]) => `${k}: ${v}`).join(', ');
-        bot.chat(`I have: ${items || 'nothing'}`);
-      } else if (cmd === 'look' && parts[1]) {
-        bot.craftmind.lookAt(parts[1]);
-      } else if (cmd === 'hello' || cmd === 'hi') {
-        bot.chat(`Hey ${username}! What's up?`);
+      // Brain handles chat, but we also check for ! commands
+      if (message.startsWith('!')) {
+        const parts = message.substring(1).toLowerCase().split(' ');
+        const cmd = parts[0];
+        if (cmd === 'follow' && parts[1]) bot.craftmind.followPlayer(parts[1]);
+        else if (cmd === 'stop') bot.craftmind.stop();
+        else if (cmd === 'brain') {
+          const hasBrain = !!bot.craftmind._brain;
+          bot.chat(hasBrain ? `Brain active (${bot.craftmind._brain.personality.name})` : 'Brain disabled');
+        }
       }
     },
     onStart: (bot) => {
-      // Simple idle behavior: look around
       setTimeout(() => {
         const pos = bot.craftmind.position();
-        bot.chat(`Hey! I just spawned at ${pos.x}, ${pos.y}, ${pos.z}. Say "follow [name]" to make me follow you!`);
+        const hasBrain = !!bot.craftmind._brain;
+        if (hasBrain) {
+          bot.chat(`Hey! I'm ${username}. My brain is online — just talk to me!`);
+          bot.chat('Use !follow <name> to follow someone, or !stop to stop.');
+        } else {
+          bot.chat(`Hey! I spawned at ${pos.x}, ${pos.y}, ${pos.z}. Say "follow [name]" to follow you!`);
+        }
       }, 2000);
     }
   });
