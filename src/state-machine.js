@@ -334,6 +334,35 @@ class BotStateMachine extends EventEmitter {
     return this._transitions.get(fromState)?.has(to) || false;
   }
 
+  /**
+   * Hook a BehaviorScript to automatically trigger state transitions on actions.
+   * @param {import('./behavior-script').BehaviorScript} script
+   * @param {Object<string, string>} actionToState - Maps action names to state names.
+   */
+  hookScript(script, actionToState = {}) {
+    this._scriptHook = script;
+    this._scriptActionMap = actionToState;
+    this._scriptHandler = (action) => {
+      const state = actionToState[action];
+      if (state) {
+        this.transition(state, { action });
+      }
+    };
+    script.on('action', this._scriptHandler);
+  }
+
+  /**
+   * Unhook the current BehaviorScript.
+   */
+  unhookScript() {
+    if (this._scriptHook && this._scriptHandler) {
+      this._scriptHook.off('action', this._scriptHandler);
+    }
+    this._scriptHook = null;
+    this._scriptHandler = null;
+    this._scriptActionMap = null;
+  }
+
   // ── Private ──
 
   _setTimeout(state) {
