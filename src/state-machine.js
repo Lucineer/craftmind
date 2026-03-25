@@ -27,6 +27,8 @@ class BotStateMachine {
     this._enteredAt = Date.now();
     /** @type {Map<string, *>} */
     this._metadata = new Map();
+    /** @type {Function|null} */
+    this._scriptHandler = null;
 
     // Register default states
     for (const name of BotStateMachine.STATES) {
@@ -167,6 +169,35 @@ class BotStateMachine {
   reset() {
     this.transition('IDLE');
     this._metadata.clear();
+  }
+
+  /**
+   * Register a behavior script that can trigger state transitions.
+   * When the script executes an action matching a registered mapping,
+   * the FSM transitions to the corresponding state.
+   * @param {import('./behavior-script').BehaviorScript} script
+   * @param {Object.<string, string>} actionToState - Maps action names to state names.
+   */
+  hookScript(script, actionToState) {
+    this._scriptHook = { script, actionToState };
+    this._scriptHandler = ({ action }) => {
+      const targetState = actionToState[action];
+      if (targetState) {
+        this.transition(targetState, { triggeredBy: action });
+      }
+    };
+    script.on('executed', this._scriptHandler);
+  }
+
+  /**
+   * Remove any registered behavior script hook.
+   */
+  unhookScript() {
+    if (this._scriptHook && this._scriptHandler) {
+      this._scriptHook.script.off('executed', this._scriptHandler);
+    }
+    this._scriptHook = null;
+    this._scriptHandler = null;
   }
 }
 

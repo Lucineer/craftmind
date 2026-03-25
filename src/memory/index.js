@@ -34,6 +34,7 @@ const BLANK = () => ({
   deathCauses: [],
   meta: {},
   lastSession: null,
+  scriptHistory: [],
 });
 
 class BotMemory {
@@ -150,6 +151,37 @@ class BotMemory {
 
   getMeta(key) {
     return this._data.meta[key];
+  }
+
+  // ── Script History ──
+
+  /**
+   * Record a behavior script version for history tracking.
+   * @param {string} scriptName
+   * @param {Object} scriptData - Serialized script data.
+   * @param {string} [source] - Who/what made the change.
+   */
+  recordScriptVersion(scriptName, scriptData, source = 'unknown') {
+    this._data.scriptHistory.push({
+      name: scriptName,
+      data: scriptData,
+      source,
+      timestamp: new Date().toISOString(),
+    });
+    // Keep last 50 versions
+    if (this._data.scriptHistory.length > 50) {
+      this._data.scriptHistory = this._data.scriptHistory.slice(-50);
+    }
+  }
+
+  /**
+   * Get script version history.
+   * @param {string} [scriptName] - Filter by name.
+   * @returns {Array}
+   */
+  getScriptHistory(scriptName) {
+    if (!scriptName) return this._data.scriptHistory;
+    return this._data.scriptHistory.filter(e => e.name === scriptName);
   }
 
   // ── Persistence ──

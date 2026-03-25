@@ -19,6 +19,11 @@ const { PluginManager } = require('./plugins');
 const { BotMemory } = require('./memory');
 const { loadConfig, validateConfig } = require('./config');
 const logger = require('./log');
+const { BehaviorScript, validateRule, validateScript, diffScripts, mergeScripts } = require('./behavior-script');
+const { ScriptWriter } = require('./script-writer');
+const { NoveltyDetector, SEVERITY } = require('./novelty-detector');
+const { AttentionBudget } = require('./attention-budget');
+const { EmergenceTracker } = require('./emergence-tracker');
 
 module.exports = {
   // Bot factory
@@ -41,4 +46,19 @@ module.exports = {
   validateConfig,
   // Logging
   logger,
+  // Behavior Script Engine
+  BehaviorScript,
+  validateRule,
+  validateScript,
+  diffScripts,
+  mergeScripts,
+  // Script Writer (LLM-driven)
+  ScriptWriter,
+  // Novelty Detection
+  NoveltyDetector,
+  SEVERITY,
+  // Attention Budget
+  AttentionBudget,
+  // Emergence Tracking
+  EmergenceTracker,
 };
