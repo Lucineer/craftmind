@@ -10,8 +10,8 @@ const https = require('https');
 class LLMClient {
   constructor(config = {}) {
     this.apiKey = config.apiKey || process.env.ZAI_API_KEY || '';
-    this.apiUrl = config.apiUrl || 'https://api.zai.chat/v1/chat/completions';
-    this.model = config.model || 'glm-4-flash'; // Fast + cheap for bot chat
+    this.apiUrl = config.apiUrl || 'https://api.z.ai/api/coding/paas/v4/chat/completions';
+    this.model = config.model || 'glm-4.7-flash'; // Fast + cheap for bot chat
     this.history = []; // Conversation history per agent
     this.maxHistory = 20; // Keep last 20 messages
     this.systemPrompt = config.systemPrompt || '';

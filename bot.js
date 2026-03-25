@@ -20,14 +20,6 @@ function createBot(options) {
   let brain = null;
   const personalityName = options.personality || options.username?.toLowerCase();
   const personality = PERSONALITIES[personalityName];
-  if (personality && options.useBrain !== false) {
-    brain = new BrainHandler(bot, personality, {
-      apiKey: options.llmApiKey,
-      model: options.llmModel || 'glm-4-flash',
-    });
-    bot.craftmind._brain = brain;
-  }
-  });
 
   bot.loadPlugin(pathfinder);
 
@@ -212,6 +204,15 @@ function createBot(options) {
       }
     }
   };
+
+  // Attach LLM brain now that craftmind namespace exists
+  if (personality && options.useBrain !== false) {
+    brain = new BrainHandler(bot, personality, {
+      apiKey: options.llmApiKey,
+      model: options.llmModel || 'glm-4-flash',
+    });
+    bot.craftmind._brain = brain;
+  }
 
   return bot;
 }
