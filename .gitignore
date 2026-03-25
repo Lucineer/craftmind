@@ -2,5 +2,14 @@ node_modules/
 server/world/
 server/logs/
 server/*.log
+server/*.jar
+server/versions/
+server/usercache.json
+server/whitelist.json
+server/ops.json
+server/banned-*.json
+server/server.properties
+server/eula.txt
 *.class
 .env
+.DS_Store
