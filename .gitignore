@@ -13,3 +13,4 @@ server/eula.txt
 *.class
 .env
 .DS_Store
+server/craftmind/
