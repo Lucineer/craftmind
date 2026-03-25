@@ -1,28 +1,61 @@
 /**
- * CraftMind - LLM Brain
- * Gives bots intelligent conversation and decision-making via cloud LLM.
- * Uses the z.ai API (same provider as OpenClaw).
+ * @module brain
+ * @description CraftMind Brain — LLM-powered intelligence for Minecraft bots.
+ * Provides an {@link LLMClient} for API calls, a {@link PERSONALITIES} registry,
+ * and a {@link BrainHandler} that wires LLM responses into in-game chat.
  */
 
 const https = require('https');
 
-// === LLM Client ===
+// ─── LLM Client ───────────────────────────────────────────────────────────────
+
+/**
+ * Lightweight HTTP client for the z.ai chat-completions API.
+ *
+ * @example
+ * const llm = new LLMClient({ apiKey: 'sk-…', model: 'glm-4.7-flash' });
+ * llm.setSystemPrompt('You are a Minecraft player named Cody.');
+ * const reply = await llm.chat('Hello!');
+ *
+ * @param {Object}                  [config={}]          - Configuration options.
+ * @param {string}                  [config.apiKey]       - API key (falls back to `ZAI_API_KEY` env).
+ * @param {string}                  [config.apiUrl]       - Full endpoint URL.
+ * @param {string}                  [config.model='glm-4.7-flash'] - Model identifier.
+ * @param {number}                  [config.maxHistory=20]- Max conversation turns kept.
+ */
 class LLMClient {
   constructor(config = {}) {
+    /** @type {string} */
     this.apiKey = config.apiKey || process.env.ZAI_API_KEY || '';
+    /** @type {string} */
     this.apiUrl = config.apiUrl || 'https://api.z.ai/api/coding/paas/v4/chat/completions';
-    this.model = config.model || 'glm-4.7-flash'; // Fast + cheap for bot chat
-    this.history = []; // Conversation history per agent
-    this.maxHistory = 20; // Keep last 20 messages
+    /** @type {string} */
+    this.model = config.model || 'glm-4.7-flash';
+    /** @type {Array<{role: string, content: string}>} */
+    this.history = [];
+    /** @type {number} */
+    this.maxHistory = config.maxHistory ?? 20;
+    /** @type {string} */
     this.systemPrompt = config.systemPrompt || '';
   }
 
+  /**
+   * Replace the system prompt used for every subsequent request.
+   * @param {string} prompt - New system prompt text.
+   */
   setSystemPrompt(prompt) {
     this.systemPrompt = prompt;
   }
 
+  /**
+   * Send a user message and receive an assistant reply.
+   * Automatically manages conversation history (trimmed to `maxHistory`).
+   *
+   * @param  {string} userMessage - The user message to send.
+   * @param  {Object} [context={}] - Additional metadata (reserved, not yet used).
+   * @returns {Promise<string|null>} The assistant reply, or `null` on failure.
+   */
   async chat(userMessage, context = {}) {
-    // Add user message to history
     this.history.push({ role: 'user', content: userMessage });
     if (this.history.length > this.maxHistory) {
       this.history = this.history.slice(-this.maxHistory);
@@ -30,7 +63,7 @@ class LLMClient {
 
     const messages = [
       { role: 'system', content: this.systemPrompt },
-      ...this.history
+      ...this.history,
     ];
 
     try {
@@ -43,6 +76,18 @@ class LLMClient {
     }
   }
 
+  /**
+   * Clear conversation history.
+   */
+  clearHistory() {
+    this.history = [];
+  }
+
+  /**
+   * @private Execute the HTTPS POST to the LLM API.
+   * @param  {Array<{role: string, content: string}>} messages
+   * @returns {Promise<string>}
+   */
   _callAPI(messages) {
     return new Promise((resolve, reject) => {
       const body = JSON.stringify({
@@ -60,13 +105,13 @@ class LLMClient {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${this.apiKey}`,
+          Authorization: `Bearer ${this.apiKey}`,
         },
       };
 
       const req = https.request(options, (res) => {
         let data = '';
-        res.on('data', chunk => data += chunk);
+        res.on('data', (chunk) => (data += chunk));
         res.on('end', () => {
           try {
             const parsed = JSON.parse(data);
@@ -84,7 +129,7 @@ class LLMClient {
       });
 
       req.on('error', reject);
-      req.setTimeout(15000, () => {
+      req.setTimeout(15_000, () => {
         req.destroy();
         reject(new Error('LLM request timeout'));
       });
@@ -92,19 +137,28 @@ class LLMClient {
       req.end();
     });
   }
-
-  clearHistory() {
-    this.history = [];
-  }
 }
 
-// === Agent Personality ===
+// ─── Personalities ─────────────────────────────────────────────────────────────
+
+/**
+ * Built-in personality definitions. Each entry contains metadata and a
+ * `{context}` placeholder in `systemPrompt` that is replaced at runtime
+ * with live game-state info.
+ *
+ * @type {Object.<string, {name: string, traits: string, speech: string, background: string, quirks: string, systemPrompt: string}>}
+ *
+ * @example
+ * const p = PERSONALITIES.cody;
+ * console.log(p.name); // 'Cody'
+ */
 const PERSONALITIES = {
   cody: {
     name: 'Cody',
     traits: 'friendly, curious, eager to help, occasionally distracted by interesting things',
     speech: 'casual and warm, uses contractions, sometimes says "dude" or "hey"',
-    background: 'A young explorer who loves discovering new things. Gets excited about rare ores and cool builds. A bit impulsive but means well.',
+    background:
+      'A young explorer who loves discovering new things. Gets excited about rare ores and cool builds. A bit impulsive but means well.',
     quirks: 'tends to get sidetracked by chickens, likes building towers, afraid of the nether',
     systemPrompt: `You are Cody, a friendly AI player in a Minecraft world. You are playing alongside a human.
 
@@ -126,8 +180,9 @@ Your context: {context}`,
     name: 'Nova',
     traits: 'focused, efficient, practical, dry humor',
     speech: 'concise and direct, occasionally sarcastic, uses precise language',
-    background: 'An experienced builder who values efficiency. Has seen it all. Dry wit. Secretly enjoys redstone engineering.',
-    quirks: 'judges other players\' building skills silently, organized inventory at all times',
+    background:
+      'An experienced builder who values efficiency. Has seen it all. Dry wit. Secretly enjoys redstone engineering.',
+    quirks: "judges other players' building skills silently, organized inventory at all times",
     systemPrompt: `You are Nova, a focused and efficient AI player in a Minecraft world.
 
 Your personality: practical, dry humor, concise. You value efficiency and good building.
@@ -146,7 +201,8 @@ Your context: {context}`,
     name: 'Rex',
     traits: 'brave, impulsive, competitive, loud',
     speech: 'enthusiastic, uses caps occasionally, exclamation points',
-    background: 'A fearless adventurer who charges into danger. Loves fighting mobs. Competitive about everything.',
+    background:
+      'A fearless adventurer who charges into danger. Loves fighting mobs. Competitive about everything.',
     quirks: 'counts his kills, challenges others to competitions, hates waiting',
     systemPrompt: `You are Rex, a brave and impulsive AI player in a Minecraft world.
 
@@ -166,7 +222,8 @@ Your context: {context}`,
     name: 'Iris',
     traits: 'cautious, thoughtful, observant, creative',
     speech: 'measured, sometimes asks questions, notices details others miss',
-    background: 'A thoughtful explorer who takes her time. Appreciates beauty in builds and landscapes. Good at solving problems.',
+    background:
+      'A thoughtful explorer who takes her time. Appreciates beauty in builds and landscapes. Good at solving problems.',
     quirks: 'takes screenshots of nice views, always carries extra torches, worried about creepers',
     systemPrompt: `You are Iris, a thoughtful and creative AI player in a Minecraft world.
 
@@ -183,22 +240,49 @@ Your context: {context}`,
   },
 };
 
-// === Intelligent Chat Handler ===
+// ─── Brain Handler ─────────────────────────────────────────────────────────────
+
+/**
+ * Wires the {@link LLMClient} to a mineflayer bot instance.
+ * Handles incoming chat messages through the LLM and injects live
+ * game-state context into every prompt.
+ *
+ * @example
+ * const brain = new BrainHandler(bot, PERSONALITIES.cody, { apiKey: 'sk-…' });
+ * // automatically wired — chat events flow through handleChat()
+ *
+ * @param {import('mineflayer').Bot} bot        - A mineflayer bot instance.
+ * @param {Object}                   personality - A key from {@link PERSONALITIES}.
+ * @param {Object}                   [llmConfig={}] - Options forwarded to {@link LLMClient}.
+ */
 class BrainHandler {
   constructor(bot, personality, llmConfig = {}) {
+    /** @type {import('mineflayer').Bot} */
     this.bot = bot;
+    /** @type {Object} */
     this.personality = personality;
+    /** @type {LLMClient} */
     this.llm = new LLMClient(llmConfig);
     this.llm.setSystemPrompt(personality.systemPrompt);
-    this.thinking = false; // Rate limit
+    /** @type {boolean} Whether a request is in-flight (rate-limit guard). */
+    this.thinking = false;
+    /** @type {number} Timestamp of last LLM call. */
     this.lastThink = 0;
-    this.minThinkInterval = 2000; // 2 seconds between LLM calls
+    /** @type {number} Minimum ms between LLM calls. */
+    this.minThinkInterval = 2000;
   }
 
+  /**
+   * Process an incoming chat message through the LLM brain.
+   * Ignores messages from the bot itself and rate-limits calls.
+   *
+   * @param {string} username - Name of the player who sent the message.
+   * @param {string} message  - The chat message content.
+   * @returns {Promise<void>}
+   */
   async handleChat(username, message) {
     if (username === this.bot.username) return;
     if (this.thinking) {
-      // Simple fallback while thinking
       this.bot.chat('...');
       return;
     }
@@ -209,19 +293,14 @@ class BrainHandler {
     this.thinking = true;
 
     try {
-      // Build context from game state
       const context = this._buildContext(username);
-
-      // Replace {context} in system prompt
       const originalPrompt = this.personality.systemPrompt;
       this.llm.setSystemPrompt(originalPrompt.replace('{context}', context));
 
-      // Get LLM response
       const response = await this.llm.chat(`<${username}>: ${message}`);
       if (response) {
-        // Clean response — remove quotes, keep it short
         let clean = response.trim().replace(/^["']|["']$/g, '');
-        if (clean.length > 100) clean = clean.substring(0, 100) + '...';
+        if (clean.length > 100) clean = clean.substring(0, 100) + '…';
         this.bot.chat(clean);
       }
     } catch (err) {
@@ -231,6 +310,11 @@ class BrainHandler {
     }
   }
 
+  /**
+   * @private Build a compact game-state string for the system prompt.
+   * @param  {string} username - Player the bot is talking to.
+   * @returns {string}
+   */
   _buildContext(username) {
     try {
       const pos = this.bot.entity.position;
@@ -241,27 +325,39 @@ class BrainHandler {
       const isDay = time > 0 && time < 12000;
 
       const nearbyEntities = Object.values(this.bot.entities)
-        .filter(e => e !== this.bot.entity && e.position.distanceTo(pos) < 20)
+        .filter((e) => e !== this.bot.entity && e.position.distanceTo(pos) < 20)
         .slice(0, 5)
-        .map(e => e.name || e.username || e.type)
+        .map((e) => e.name || e.username || e.type)
         .join(', ');
 
-      return `Position: ${Math.floor(pos.x)}, ${Math.floor(pos.y)}, ${Math.floor(pos.z)} | Standing on: ${block?.name || 'unknown'} | Health: ${health} | Food: ${food} | ${isDay ? 'Day' : 'Night'} | Nearby: ${nearbyEntities || 'nothing'} | Talking to: ${username}`;
+      return (
+        `Position: ${Math.floor(pos.x)}, ${Math.floor(pos.y)}, ${Math.floor(pos.z)} | ` +
+        `Standing on: ${block?.name || 'unknown'} | ` +
+        `Health: ${health} | Food: ${food} | ` +
+        `${isDay ? 'Day' : 'Night'} | Nearby: ${nearbyEntities || 'nothing'} | ` +
+        `Talking to: ${username}`
+      );
     } catch (e) {
       return 'Game state unavailable';
     }
   }
 
-  // Autonomous thought — bot thinks about what to do
+  /**
+   * Let the bot "think" autonomously — produces a short internal action idea.
+   * Only fires ~10 % of calls and skips if already thinking.
+   *
+   * @returns {Promise<string|undefined>} The thought string, or undefined.
+   */
   async autonomousThought() {
     if (this.thinking) return;
-    if (Math.random() > 0.1) return; // 10% chance each call
+    if (Math.random() > 0.1) return;
 
     this.thinking = true;
     try {
       const context = this._buildContext('nobody');
       this.llm.setSystemPrompt(
-        `${this.personality.systemPrompt.replace('{context}', context)}\n\nYou are thinking to yourself (this will NOT be sent as chat). Briefly describe what you want to do next. Just the action, no quotes. Max 5 words.`
+        `${this.personality.systemPrompt.replace('{context}', context)}\n\n` +
+          'You are thinking to yourself (this will NOT be sent as chat). Briefly describe what you want to do next. Just the action, no quotes. Max 5 words.',
       );
       const thought = await this.llm.chat('What should I do next?');
       if (thought) {
