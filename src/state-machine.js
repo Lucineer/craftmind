@@ -26,6 +26,9 @@ const BUILTIN_STATES = [
   'MINING',
   'BUILDING',
   'FISHING',
+  'DEAD',
+  'COMBAT',
+  'FLEEING',
 ];
 
 /** Built-in transition table: maps FROM state to a Set of valid TO states. */
@@ -42,6 +45,7 @@ const BUILTIN_TRANSITIONS = {
   LANDING: ['IDLE', 'CASTING'],
   COMBAT: ['IDLE', 'FLEEING'],
   FLEEING: ['IDLE'],
+  DEAD: ['IDLE'],
 };
 
 class BotStateMachine extends EventEmitter {
