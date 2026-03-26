@@ -1,64 +1,53 @@
 /**
  * Built-in plugin: FleeOnDanger
  *
- * When health drops too low or bot is in lava, triggers flee behavior.
- * Configurable via config.behavior.fleeHealth and config.behavior.fleeOnLava.
+ * Flee from lava, drowning, and low-health situations.
  */
 module.exports = {
   name: 'flee-on-danger',
   version: '1.0.0',
-  description: 'Flee from dangerous situations (low health, lava)',
+  description: 'Flee from dangerous situations (low health, lava, drowning)',
 
   init(ctx) {
-    const { bot, events, config } = ctx;
-    const stateMachine = bot.craftmind?._stateMachine;
-    const fleeHealth = config.behavior?.fleeHealth ?? 4;
-    const fleeOnLava = config.behavior?.fleeOnLava !== false;
+    const { bot, events } = ctx;
+    const fleeHealth = 6;
+    let fleeing = false;
 
-    if (!stateMachine) return;
+    function flee(cause) {
+      if (fleeing) return;
+      fleeing = true;
+      try { bot.pathfinder.setGoal(null); } catch {}
+      bot.setControlState('forward', true);
+      bot.setControlState('sprint', true);
+      bot.setControlState('jump', true);
+      setTimeout(() => {
+        bot.clearControlStates();
+        fleeing = false;
+      }, 2500);
+    }
 
     events.on('HEALTH', () => {
-      // Check for lava
-      if (fleeOnLava) {
-        const pos = bot.entity.position;
-        const blockBelow = bot.blockAt(pos.offset(0, -1, 0));
-        const blockAt = bot.blockAt(pos);
-        if (blockBelow?.name?.includes('lava') || blockAt?.name?.includes('lava')) {
-          if (stateMachine.current !== 'FLEEING') {
-            stateMachine.transition('FLEEING', { cause: 'lava' });
-            bot.craftmind.stop();
-            // Try to jump out
-            bot.setControlState('jump', true);
-            setTimeout(() => bot.setControlState('jump', false), 500);
-          }
-          return;
-        }
+      if (!bot.entity || bot.health <= 0) return;
+
+      const blockBelow = bot.blockAt(bot.entity.position.offset(0, -1, 0));
+      const blockAt = bot.blockAt(bot.entity.position);
+
+      if (blockBelow?.name?.includes('lava') || blockAt?.name?.includes('lava')) {
+        flee('lava');
+        return;
       }
 
-      // Low health flee
-      if (bot.health <= fleeHealth && stateMachine.current !== 'FLEEING') {
-        stateMachine.transition('FLEEING', { cause: 'low_health', health: bot.health });
-        bot.craftmind.stop();
-        // Run away from nearby hostile mobs
-        const hostiles = bot.nearestEntity((e) =>
+      if (blockAt?.name === 'water') {
+        flee('drowning');
+        return;
+      }
+
+      if (bot.health <= fleeHealth) {
+        const hostile = bot.nearestEntity((e) =>
           e.type === 'mob' &&
           ['zombie', 'skeleton', 'creeper', 'spider', 'enderman', 'blaze'].some((m) => e.name?.includes(m)),
         );
-        if (hostiles) {
-          const dx = bot.entity.position.x - hostiles.position.x;
-          const dz = bot.entity.position.z - hostiles.position.z;
-          const len = Math.sqrt(dx * dx + dz * dz) || 1;
-          const fleeX = bot.entity.position.x + (dx / len) * 16;
-          const fleeZ = bot.entity.position.z + (dz / len) * 16;
-          bot.craftmind.goTo(Math.floor(fleeX), 64, Math.floor(fleeZ));
-        }
-      }
-    });
-
-    // Recover from flee when safe
-    stateMachine.onStateChange((from, to) => {
-      if (from === 'FLEEING' && to === 'IDLE') {
-        // Safe now
+        if (hostile) flee('low_health');
       }
     });
   },
