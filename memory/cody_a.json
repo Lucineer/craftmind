@@ -3,7 +3,7 @@
   "places": {},
   "builds": {},
   "resources": {},
-  "deaths": 5,
+  "deaths": 6,
   "deathCauses": [
     {
       "cause": "death event",
@@ -24,9 +24,13 @@
     {
       "cause": "death event",
       "timestamp": "2026-03-26T12:11:39.180Z"
+    },
+    {
+      "cause": "death event",
+      "timestamp": "2026-03-26T12:45:13.025Z"
     }
   ],
   "meta": {},
-  "lastSession": "2026-03-26T12:29:02.213Z",
+  "lastSession": "2026-03-26T12:59:11.856Z",
   "scriptHistory": []
 }
