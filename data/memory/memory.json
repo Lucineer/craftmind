@@ -1,0 +1,156 @@
+{
+  "episodes": [
+    {
+      "type": "planned_day",
+      "data": {
+        "going": true,
+        "reason": "Good day to fish."
+      },
+      "time": "2026-03-26T00:52:58.738Z",
+      "timestamp": 1774486378738
+    },
+    {
+      "type": "player_chat",
+      "data": {
+        "player": "Rcon",
+        "message": "Cody v2 is online with the behavior engine"
+      },
+      "tags": [
+        "social"
+      ],
+      "time": "2026-03-26T00:53:40.441Z",
+      "timestamp": 1774486420441
+    },
+    {
+      "type": "player_chat",
+      "data": {
+        "player": "MagnusandMouse",
+        "message": "!cody"
+      },
+      "tags": [
+        "social"
+      ],
+      "time": "2026-03-26T00:57:44.489Z",
+      "timestamp": 1774486664489
+    },
+    {
+      "type": "player_chat",
+      "data": {
+        "player": "MagnusandMouse",
+        "message": "!cody let's find a boat and go fishing"
+      },
+      "tags": [
+        "social"
+      ],
+      "time": "2026-03-26T00:58:00.659Z",
+      "timestamp": 1774486680659
+    },
+    {
+      "type": "player_chat",
+      "data": {
+        "player": "MagnusandMouse",
+        "message": "lets go fishing now"
+      },
+      "tags": [
+        "social"
+      ],
+      "time": "2026-03-26T00:58:34.782Z",
+      "timestamp": 1774486714782
+    },
+    {
+      "type": "player_chat",
+      "data": {
+        "player": "MagnusandMouse",
+        "message": "!cody start walking towards the ocean"
+      },
+      "tags": [
+        "social"
+      ],
+      "time": "2026-03-26T00:59:05.424Z",
+      "timestamp": 1774486745424
+    },
+    {
+      "type": "planned_day",
+      "data": {
+        "going": true,
+        "reason": "Good day to fish."
+      },
+      "time": "2026-03-26T01:00:43.888Z",
+      "timestamp": 1774486843888
+    },
+    {
+      "type": "player_chat",
+      "data": {
+        "player": "SafeArtist2047",
+        "message": "Hey Cody, hows the fishing today?"
+      },
+      "tags": [
+        "social"
+      ],
+      "time": "2026-03-26T01:01:26.091Z",
+      "timestamp": 1774486886091
+    },
+    {
+      "type": "planned_day",
+      "data": {
+        "going": true,
+        "reason": "Good day to fish."
+      },
+      "time": "2026-03-26T01:02:52.764Z",
+      "timestamp": 1774486972764
+    },
+    {
+      "type": "planned_day",
+      "data": {
+        "going": true,
+        "reason": "Good day to fish."
+      },
+      "time": "2026-03-26T01:03:27.307Z",
+      "timestamp": 1774487007307
+    },
+    {
+      "type": "player_chat",
+      "data": {
+        "player": "Rcon",
+        "message": "!cody"
+      },
+      "tags": [
+        "social"
+      ],
+      "time": "2026-03-26T01:08:04.952Z",
+      "timestamp": 1774487284952
+    },
+    {
+      "type": "planned_day",
+      "data": {
+        "going": true,
+        "reason": "Good day to fish."
+      },
+      "time": "2026-03-26T01:08:39.740Z",
+      "timestamp": 1774487319740
+    },
+    {
+      "type": "planned_day",
+      "data": {
+        "going": true,
+        "reason": "Good day to fish."
+      },
+      "time": "2026-03-26T01:09:09.044Z",
+      "timestamp": 1774487349044
+    },
+    {
+      "type": "player_chat",
+      "data": {
+        "player": "Rcon",
+        "message": "!cody"
+      },
+      "tags": [
+        "social"
+      ],
+      "time": "2026-03-26T01:10:07.474Z",
+      "timestamp": 1774487407474
+    }
+  ],
+  "rules": [],
+  "savedAt": "2026-03-26T01:11:04.035Z"
+}

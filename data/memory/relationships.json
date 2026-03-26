@@ -1,0 +1,38 @@
+{
+  "Rcon": {
+    "familiarity": 0.03,
+    "trust": 0.3,
+    "tag": "new kid",
+    "firstMet": "2026-03-26T00:53:40.440Z",
+    "lastSeen": "2026-03-26T01:10:07.474Z",
+    "interactions": 3,
+    "notes": []
+  },
+  "MagnusandMouse": {
+    "familiarity": 0.04,
+    "trust": 0.3,
+    "tag": "new kid",
+    "firstMet": "2026-03-26T00:57:44.489Z",
+    "lastSeen": "2026-03-26T00:59:05.424Z",
+    "interactions": 4,
+    "notes": []
+  },
+  "stranger": {
+    "familiarity": 0.05,
+    "trust": 0.3,
+    "tag": "new kid",
+    "firstMet": "2026-03-26T00:57:44.492Z",
+    "lastSeen": "2026-03-26T01:10:07.474Z",
+    "interactions": 5,
+    "notes": []
+  },
+  "SafeArtist2047": {
+    "familiarity": 0.01,
+    "trust": 0.3,
+    "tag": "new kid",
+    "firstMet": "2026-03-26T01:01:26.090Z",
+    "lastSeen": "2026-03-26T01:01:26.090Z",
+    "interactions": 1,
+    "notes": []
+  }
+}

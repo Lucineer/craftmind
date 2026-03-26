@@ -718,6 +718,7 @@ function formatPos(pos) {
 
 // ── CLI ────────────────────────────────────────────────────────────────────────
 if (require.main === module) {
+  (async () => {
   const args = process.argv.slice(2);
   require('dotenv').config();
 
@@ -749,12 +750,21 @@ if (require.main === module) {
     if (args[2] && !args[2].startsWith('-')) username = args[2];
   }
 
-  // Load extra plugins from CLI
+  // Load extra plugins from CLI (support both CJS and ESM plugins)
   const cliPlugins = [];
   for (const pluginPath of extraPlugins) {
     try {
-      const mod = require(path.resolve(pluginPath));
-      const plugin = mod.default || mod;
+      const resolved = path.resolve(pluginPath);
+      let plugin;
+      // Try CJS require first
+      try {
+        const mod = require(resolved);
+        plugin = mod.default || mod;
+      } catch {
+        // If require fails (likely ESM), use dynamic import
+        const mod = await import(resolved);
+        plugin = mod.default || mod;
+      }
       if (plugin && (plugin.init || plugin.load)) {
         cliPlugins.push(plugin);
       } else {
@@ -796,6 +806,7 @@ if (require.main === module) {
       process.exit(0);
     },
   });
+  })();
 }
 
 module.exports = { createBot };

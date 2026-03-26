@@ -162,8 +162,8 @@ class BotStateMachine extends EventEmitter {
       throw new Error(`Unknown state: ${newState}`);
     }
 
-    // Allow IDLE from any state (emergency stop)
-    if (newState !== 'IDLE' && !(this._transitions.get(from)?.has(newState))) {
+    // Allow IDLE and DEAD from any state (emergency stop / death)
+    if (newState !== 'IDLE' && newState !== 'DEAD' && !(this._transitions.get(from)?.has(newState))) {
       console.warn(`[StateMachine] Invalid transition: ${from} → ${newState}`);
       this.emit('invalidTransition', from, newState, data);
       return false;
