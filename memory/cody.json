@@ -14,6 +14,11 @@
       "firstMet": "2026-03-26T01:01:26.090Z",
       "lastSeen": "2026-03-26T01:01:26.090Z",
       "interactions": 1
+    },
+    "testbot": {
+      "firstMet": "2026-03-26T02:00:21.203Z",
+      "lastSeen": "2026-03-26T02:00:21.203Z",
+      "interactions": 1
     }
   },
   "places": {},
@@ -63,6 +68,6 @@
     }
   ],
   "meta": {},
-  "lastSession": "2026-03-26T01:47:30.342Z",
+  "lastSession": "2026-03-26T02:08:19.408Z",
   "scriptHistory": []
 }
