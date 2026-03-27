@@ -146,6 +146,36 @@ const builtinCommands = [
       }
     },
   },
+  {
+    name: 'actions',
+    description: 'List available actions',
+    usage: '!actions [action_name]',
+    execute(ctx, actionName) {
+      const actionRegistry = ctx.bot.craftmind._actions;
+      if (!actionRegistry) {
+        ctx.reply('Action system not available');
+        return;
+      }
+
+      if (actionName) {
+        // Show details for a specific action
+        const action = actionRegistry.get(actionName);
+        if (action) {
+          ctx.reply(`${actionName}: ${action.description}`);
+        } else {
+          ctx.reply(`Unknown action: ${actionName}`);
+        }
+      } else {
+        // List all actions
+        const actions = actionRegistry.list();
+        if (actions.length === 0) {
+          ctx.reply('No actions registered');
+        } else {
+          ctx.reply(`Available actions: ${actions.join(', ')}`);
+        }
+      }
+    },
+  },
 ];
 
 module.exports = { builtinCommands };

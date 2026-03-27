@@ -32,6 +32,7 @@
  * @property {import('../events').CraftMindEvents} events - Event emitter.
  * @property {import('../state-machine').BotStateMachine} stateMachine - State machine.
  * @property {import('mineflayer').Bot} bot - The mineflayer bot instance.
+ * @property {import('../actions').ActionRegistry} actions - Action registry.
  * @property {function(string, function): void} registerMethod - Register custom bot method.
  * @property {function(string, string, number): void} addPromptFragment - Add brain prompt fragment.
  * @property {function(string, Object): void} addInventoryHook - Register inventory hook.
@@ -64,10 +65,11 @@ class PluginManager {
    * @param {import('../events').CraftMindEvents} events
    * @param {import('../commands').CommandRegistry} commands
    * @param {import('mineflayer').Bot} bot
+   * @param {import('../actions').ActionRegistry} [actions] - Action registry (optional)
    * @returns {boolean} `false` if already loaded.
    * @throws {Error} If the plugin is invalid.
    */
-  load(plugin, events, commands, bot) {
+  load(plugin, events, commands, bot, actions) {
     if (!plugin || (!plugin.load && !plugin.init)) {
       throw new Error('Plugin must have a load() or init() function');
     }
@@ -100,6 +102,7 @@ class PluginManager {
       events,
       stateMachine: bot?.craftmind?._stateMachine || null,
       bot,
+      actions,
       /**
        * Register a custom method accessible via `bot.craftmind.<methodName>()`.
        * @param {string} methodName

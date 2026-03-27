@@ -66,10 +66,28 @@ fn.call(plugin, ctx);  // NOT await fn.call(plugin, ctx)
 - `ctx.events` - Event emitter for subscribing to events
 - `ctx.commands` - Command registry for registering commands
 - `ctx.stateMachine` - State machine instance
+- `ctx.actions` - Action registry for registering and executing universal actions
 - `ctx.registerMethod(name, handler)` - Register custom bot methods
 - `ctx.addPromptFragment(key, text, priority)` - Add brain prompt fragments
 - `ctx.addInventoryHook(category, opts)` - Register inventory tracking hooks
 - `ctx.registerCrewRole(role, handler)` - Register crew coordination roles
+
+**Action System**: The action registry provides 12 universal actions available to all plugins:
+- `move_to` - Move to coordinates using pathfinding
+- `mine_block` - Mine nearest block of specific type
+- `place_block` - Place block from inventory
+- `craft_item` - Craft items from inventory materials
+- `equip_item` - Equip items to equipment slots
+- `use_item` - Use/activate held item
+- `look_at` - Look at coordinates or entity
+- `attack_entity` - Attack nearby hostile entity
+- `interact_entity` - Right-click interact with entity
+- `wait` - Wait for specified duration
+- `chat` - Send chat message with rate limiting
+- `teleport` - Teleport via RCON (admin only)
+
+Plugins can register custom actions: `ctx.actions.register(name, { description, validate, execute })`
+Execute actions: `await ctx.actions.execute(name, ctx, params)`
 
 ### Module Systems
 - **craftmind/** uses CommonJS (`require`/`module.exports`)

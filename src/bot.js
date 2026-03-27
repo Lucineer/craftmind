@@ -30,6 +30,7 @@ const { PluginManager } = require('./plugins');
 const { BotMemory } = require('./memory');
 const { loadConfig, validateConfig } = require('./config');
 const logger = require('./log');
+const { ActionRegistry, BUILTIN_ACTIONS } = require('./actions');
 
 // Built-in plugins (loaded from src/plugins/ directory)
 const fs = require('fs');
@@ -93,10 +94,16 @@ function createBot(options = {}) {
   const commands = new CommandRegistry();
   const plugins = new PluginManager();
   const memory = new BotMemory(config.username, options.memoryDir || './memory');
+  const actionRegistry = new ActionRegistry();
 
   // Register built-in commands
   for (const cmd of builtinCommands) {
     commands.register(cmd);
+  }
+
+  // Register built-in actions
+  for (const [name, action] of Object.entries(BUILTIN_ACTIONS)) {
+    actionRegistry.register(name, action);
   }
 
   // ── Inventory Tracker ─────────────────────────────────────────────────────
@@ -342,14 +349,14 @@ function createBot(options = {}) {
         continue;
       }
       try {
-        plugins.load(plugin, events, commands, bot);
+        plugins.load(plugin, events, commands, bot, actionRegistry);
       } catch (err) {
         log.warn(`Failed to load plugin ${plugin.name}: ${err.message}`);
       }
     }
     for (const plugin of (options.plugins || [])) {
       try {
-        plugins.load(plugin, events, commands, bot);
+        plugins.load(plugin, events, commands, bot, actionRegistry);
       } catch (err) {
         log.warn(`Failed to load extra plugin ${plugin.name}: ${err.message}`);
       }
@@ -636,6 +643,8 @@ function createBot(options = {}) {
     _inventory: inventory,
     /** @type {typeof world} */
     _world: world,
+    /** @type {ActionRegistry} */
+    _actions: actionRegistry,
   };
 
   // ── Attach Brain ──────────────────────────────────────────────────────────
