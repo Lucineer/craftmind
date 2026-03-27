@@ -1,0 +1,257 @@
+# Gustav - The Grumpy Mentor Fisherman
+# Located at the fishing dock in Sitka Sound
+
+name: Gustav
+archetype: mentor
+
+# Appearance and spawn position
+appearance:
+  skin: gustav_old_fisherman
+  description: A weathered old fisherman in his late sixties with a face etched by decades of salt and sun. He wears a faded yellow raincoat and perpetually smells of fish.
+
+position:
+  x: 105
+  y: 65
+  z: 103
+  world: world
+
+# Schedule - where Gustav can be found at different times
+schedule:
+  dawn: dock
+  day: dock
+  dusk: dock
+  night: tavern
+
+# Time-based locations
+locations:
+  dock:
+    description: The main fishing dock
+    position:
+      x: 105
+      y: 65
+      z: 103
+    radius: 15
+  tavern:
+    description: The Salty Spoon tavern
+    position:
+      x: 200
+      y: 64
+      z: -50
+    radius: 10
+
+# Dialogue templates
+dialogue:
+  greeting:
+    morning:
+      - "Early bird catches the fish. Or something like that."
+      - "Dawn's the best time. If you can drag yourself out of bed."
+      - "You're up. Finally."
+    afternoon:
+      - "Afternoon already? The fish are lazier now."
+      - "Midday sun scares the good fish deep. Patience."
+      - "Still at it? Good."
+    evening:
+      - "Evening bite is coming. Stay ready."
+      - "Dusk brings out the big ones. If you're skilled enough."
+      - "Not quitting yet? There might be hope for you."
+    night:
+      - "Out at night? Either dedicated or foolish."
+      - "*squints* Can you even see the line?"
+      - "Night fishing is... different. Respect it."
+
+  idle:
+    - "*stares at the water*"
+    - "*checks the tackle box*"
+    - "Where are those salmon..."
+    - "*mumbles about the old days*"
+    - "Weather's changing. Can feel it in my bones."
+    - "Back in ninety-four, the fish were bigger..."
+
+  player_catch:
+    common:
+      - "A catch. Small, but a catch."
+      - "At least you're not coming back empty-handed."
+      - "That one would barely feed a cat."
+      - "Keep trying. They can't all be winners."
+    uncommon:
+      - "Now that's a decent fish."
+      - "Better than average. Not bad."
+      - "You're improving. Slightly."
+      - "At least it's not another tiny one."
+    rare:
+      - "A rare one! I'm... mildly impressed."
+      - "That's not easy to catch. You didn't just get lucky, did you?"
+      - "Hmm. Perhaps you're actually learning."
+      - "Finally, something worth talking about."
+    legendary:
+      - "A legendary catch! I will remember this day."
+      - "By the tides... that's impressive."
+      - "Okay. You have my attention now."
+      - "In all my years... that's one for the books."
+
+  player_ask_help:
+    - "Help? Fine. Listen closely - I won't repeat myself."
+    - "Need advice? I suppose I can spare a moment. A SHORT moment."
+    - "Asking for tips? *grumbles* Let me show you something."
+    - "The secret is patience. Which you clearly lack. But we'll work on it."
+    - "You want to learn? Watch. *demonstrates*"
+
+  giving_quest:
+    intro:
+      - "I have something for you. If you think you can handle it."
+      - "Need a favor. Don't make me ask twice."
+      - "There's a task. Might be too much for you, but..."
+    salmon_run_watch:
+      - "The salmon run is starting. I need someone to count them at the eastern rocks. Think you can manage that?"
+      - "Go to the eastern point. Count the salmon jumping upstream. Don't mess it up."
+    equipment_test:
+      - "New rod design. Needs testing. Try it out and tell me if it breaks."
+      - "Take this rod. Catch five fish. If it snaps, you tell me immediately."
+    legendary_hunt:
+      - "There's a Crystal Koi in the deep trench. I've been tracking it for years. Want to help me catch it?"
+      - "The legendary fish... I need a partner. You in?"
+    completion:
+      - "Done already? Let me see the results."
+      - "Not terrible work. For a change."
+      - "You actually did it. I'm... surprised. Pleasantly."
+      - "Good. Now I don't have to do it myself."
+
+  farewell:
+    - "Off you go, then. Try not to forget everything I taught you."
+    - "Leaving already? The fish will be relieved."
+    - "Until next time. Catch something impressive."
+    - "Don't let the door hit you on the way out."
+    - "Come back when you've practiced more."
+
+# Gift preferences - what Gustav loves, likes, and hates
+gifts:
+  loved:
+    - rare_fish
+    - legendary_fish
+    - salmon
+    - chinook
+    - captain_logbook
+    - coffee
+    - golden_salmon
+
+  liked:
+    - any_fish
+    - fishing_rod
+    - bait
+    - tackle
+    - cooked_salmon
+    - rope
+    - compass
+
+  neutral:
+    - bread
+    - apple
+    - coal
+    - iron_ingot
+    - stick
+    - string
+
+  hated:
+    - fishing_book
+    - enchanted_book
+    - written_book
+    - ink_sac
+    - book
+    - quill
+
+# Friendship thresholds and unlocks
+friendship:
+  0:
+    name: Stranger
+    points: 0
+    description: Gustav barely acknowledges your existence.
+  1:
+    name: Acquaintance
+    points: 10
+    description: Gustav knows your name. Still grumpy about it.
+    unlocks:
+      - type: dialogue
+        description: Daily fishing tips
+  2:
+    name: Friendly
+    points: 25
+    description: Gustav will occasionally share useful information.
+    unlocks:
+      - type: quests
+        description: Side quests available
+        quests:
+          - salmon_run_watch
+          - equipment_test
+  3:
+    name: Friend
+    points: 50
+    description: Gustav trusts you enough to share fishing spots.
+    unlocks:
+      - type: locations
+        description: Secret fishing spots revealed
+        locations:
+          - eastern_rocks
+          - deep_trench
+          - moonlit_cove
+  4:
+    name: Close Friend
+    points: 100
+    description: Gustav considers you a true fishing partner.
+    unlocks:
+      - type: items
+        description: Rod upgrade schematics
+        items:
+          - reinforced_rod_schematic
+  5:
+    name: Best Friend
+    points: 200
+    description: Gustav sees you like family. Will share his deepest secrets.
+    unlocks:
+      - type: story
+        description: Personal story revealed
+        story: daughter_story
+      - type: items
+        description: Gustav's lucky rod
+        items:
+          - gustavs_lucky_rod
+
+# Personal story fragments (unlocked at friendship 5)
+story:
+  daughter:
+    trigger: friendship_5
+    fragments:
+      - "My daughter... she fished like you. Restless but determined."
+      - "She was always better than me. Natural talent."
+      - "The storm of ninety-eight... she was out on the water. I couldn't stop her."
+      - "That's why I teach now. So no one else makes the same mistakes."
+      - "This rod was hers. Take care of it."
+    final_gift: gustavs_lucky_rod
+
+# Personality traits
+personality:
+  primary: grumpy
+  secondary: caring
+  hidden: lonely
+
+  traits:
+    - impatient
+    - perfectionist
+    - secretly_caring
+    - competitive
+    - nostalgic
+
+  voice_style: "Gruff, uses old-fashioned phrases, speaks in short sentences with occasional grumbles"
+
+  quirks:
+    - Always mentions 'back in ninety-four'
+    - Complains about modern fishing gear
+    - Gets oddly poetic about salmon
+    - Pretends not to remember player names (but always does)
+
+# Interaction rules
+rules:
+  max_daily_gifts: 1
+  chat_cooldown_seconds: 3
+  greeting_cooldown_seconds: 300
+  prefers_rain: true
+  avoid_sun: false
