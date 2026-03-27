@@ -68,15 +68,16 @@
   "minecraft:adventure/adventuring_time": {
     "criteria": {
       "minecraft:flower_forest": "2026-03-26 07:50:30 -0800",
-      "minecraft:old_growth_birch_forest": "2026-03-26 03:44:25 -0800",
       "minecraft:beach": "2026-03-25 22:14:29 -0800",
       "minecraft:forest": "2026-03-26 03:46:56 -0800",
-      "minecraft:ocean": "2026-03-25 21:35:16 -0800",
       "minecraft:deep_ocean": "2026-03-25 21:52:39 -0800",
       "minecraft:river": "2026-03-25 21:47:43 -0800",
       "minecraft:lukewarm_ocean": "2026-03-26 02:39:06 -0800",
-      "minecraft:birch_forest": "2026-03-25 22:12:57 -0800",
       "minecraft:stony_shore": "2026-03-25 21:36:44 -0800",
+      "minecraft:old_growth_birch_forest": "2026-03-26 03:44:25 -0800",
+      "minecraft:ocean": "2026-03-25 21:35:16 -0800",
+      "minecraft:sunflower_plains": "2026-03-26 13:59:44 -0800",
+      "minecraft:birch_forest": "2026-03-25 22:12:57 -0800",
       "minecraft:plains": "2026-03-26 00:00:23 -0800",
       "minecraft:deep_lukewarm_ocean": "2026-03-26 02:38:00 -0800"
     },
@@ -391,6 +392,12 @@
   "minecraft:recipes/misc/conduit": {
     "criteria": {
       "has_nautilus_shell": "2026-03-26 08:11:55 -0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/food/mushroom_stew": {
+    "criteria": {
+      "has_bowl": "2026-03-26 11:39:09 -0800"
     },
     "done": true
   },

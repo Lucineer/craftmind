@@ -397,5 +397,17 @@
     },
     "done": true
   },
+  "minecraft:recipes/misc/conduit": {
+    "criteria": {
+      "has_nautilus_shell": "2026-03-26 15:30:00 -0800"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/black_dye": {
+    "criteria": {
+      "has_ink_sac": "2026-03-26 15:34:31 -0800"
+    },
+    "done": true
+  },
   "DataVersion": 4189
 }

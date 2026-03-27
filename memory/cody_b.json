@@ -1,9 +1,25 @@
 {
-  "players": {},
+  "players": {
+    "magnusandmouse": {
+      "firstMet": "2026-03-27T00:10:17.215Z",
+      "lastSeen": "2026-03-27T00:33:38.083Z",
+      "interactions": 3
+    },
+    "cody_c": {
+      "firstMet": "2026-03-27T00:47:16.293Z",
+      "lastSeen": "2026-03-27T01:49:08.992Z",
+      "interactions": 734
+    },
+    "cody_a": {
+      "firstMet": "2026-03-27T00:47:16.647Z",
+      "lastSeen": "2026-03-27T01:49:05.614Z",
+      "interactions": 739
+    }
+  },
   "places": {},
   "builds": {},
   "resources": {},
-  "deaths": 4,
+  "deaths": 5,
   "deathCauses": [
     {
       "cause": "death event",
@@ -20,9 +36,13 @@
     {
       "cause": "death event",
       "timestamp": "2026-03-26T11:56:24.801Z"
+    },
+    {
+      "cause": "death event",
+      "timestamp": "2026-03-27T01:11:28.121Z"
     }
   ],
   "meta": {},
-  "lastSession": "2026-03-26T19:40:20.345Z",
+  "lastSession": "2026-03-27T01:49:12.723Z",
   "scriptHistory": []
 }

@@ -1,9 +1,20 @@
 {
-  "players": {},
+  "players": {
+    "cody_c": {
+      "firstMet": "2026-03-27T00:47:13.101Z",
+      "lastSeen": "2026-03-27T01:48:52.923Z",
+      "interactions": 732
+    },
+    "cody_b": {
+      "firstMet": "2026-03-27T00:47:13.257Z",
+      "lastSeen": "2026-03-27T00:47:13.257Z",
+      "interactions": 1
+    }
+  },
   "places": {},
   "builds": {},
   "resources": {},
-  "deaths": 6,
+  "deaths": 8,
   "deathCauses": [
     {
       "cause": "death event",
@@ -28,9 +39,17 @@
     {
       "cause": "death event",
       "timestamp": "2026-03-26T12:45:13.025Z"
+    },
+    {
+      "cause": "death event",
+      "timestamp": "2026-03-26T22:05:55.357Z"
+    },
+    {
+      "cause": "death event",
+      "timestamp": "2026-03-26T22:55:35.402Z"
     }
   ],
   "meta": {},
-  "lastSession": "2026-03-26T19:40:20.352Z",
+  "lastSession": "2026-03-27T01:48:57.666Z",
   "scriptHistory": []
 }

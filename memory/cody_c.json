@@ -1,14 +1,26 @@
 {
-  "players": {},
+  "players": {
+    "magnusandmouse": {
+      "firstMet": "2026-03-27T00:35:41.419Z",
+      "lastSeen": "2026-03-27T00:38:23.989Z",
+      "interactions": 2
+    },
+    "cody_b": {
+      "firstMet": "2026-03-27T00:47:13.525Z",
+      "lastSeen": "2026-03-27T00:47:13.525Z",
+      "interactions": 1
+    },
+    "cody_a": {
+      "firstMet": "2026-03-27T00:47:16.643Z",
+      "lastSeen": "2026-03-27T01:49:05.614Z",
+      "interactions": 739
+    }
+  },
   "places": {},
   "builds": {},
   "resources": {},
-  "deaths": 8,
+  "deaths": 11,
   "deathCauses": [
-    {
-      "cause": "death event",
-      "timestamp": "2026-03-26T05:37:52.691Z"
-    },
     {
       "cause": "death event",
       "timestamp": "2026-03-26T09:40:31.526Z"
@@ -36,9 +48,21 @@
     {
       "cause": "death event",
       "timestamp": "2026-03-26T12:53:24.871Z"
+    },
+    {
+      "cause": "death event",
+      "timestamp": "2026-03-26T22:13:55.768Z"
+    },
+    {
+      "cause": "death event",
+      "timestamp": "2026-03-26T22:23:50.806Z"
+    },
+    {
+      "cause": "death event",
+      "timestamp": "2026-03-27T00:57:10.118Z"
     }
   ],
   "meta": {},
-  "lastSession": "2026-03-26T19:40:20.351Z",
+  "lastSession": "2026-03-27T01:49:12.687Z",
   "scriptHistory": []
 }
