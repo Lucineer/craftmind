@@ -17,7 +17,6 @@ const { Rcon } = require('/home/lucineer/projects/craftmind/node_modules/rcon-cl
  */
 async function giveSupplies(port, playerName, options = {}) {
   const { rodCount = 3, breadCount = 32, maxRetries = 3, retryDelay = 5000 } = options;
-  if (port < 30000) {
     let lastError;
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -58,7 +57,6 @@ async function giveSupplies(port, playerName, options = {}) {
     // All retries exhausted
     console.error(`[RCON] Failed to give supplies to ${playerName} after ${maxRetries} attempts: ${lastError?.message}`);
     throw lastError || new Error('RCON supplies failed');
-  }
 }
 
 /**
@@ -70,14 +68,12 @@ async function giveSupplies(port, playerName, options = {}) {
  * @param {number} z
  */
 async function teleport(port, playerName, x, y, z) {
-  if (port < 30000) {
-    const rcon = await Rcon.connect({ host: 'localhost', port, password: 'fishing42' });
-    try {
-      await rcon.send(`tp ${playerName} ${x} ${y} ${z}`);
-      console.log(`[RCON] Teleported ${playerName} to ${x},${y},${z}`);
-    } finally {
-      await rcon.end();
-    }
+  const rcon = await Rcon.connect({ host: 'localhost', port, password: 'fishing42' });
+  try {
+    await rcon.send(`tp ${playerName} ${x} ${y} ${z}`);
+    console.log(`[RCON] Teleported ${playerName} to ${x},${y},${z}`);
+  } finally {
+    await rcon.end();
   }
 }
 
