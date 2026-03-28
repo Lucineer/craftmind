@@ -1,0 +1,282 @@
+[
+  {
+    "type": "catch_count",
+    "difficulty": "easy",
+    "targetRange": [3, 10],
+    "rewardRange": [10, 25],
+    "titleTemplates": ["Catch {target} fish", "Daily catch: {target} fish", "Reel in {target}"],
+    "descriptionTemplates": ["Catch any {target} fish today.", "Your daily goal: {target} fish of any type."]
+  },
+  {
+    "type": "catch_count",
+    "difficulty": "easy",
+    "targetRange": [5, 8],
+    "rewardRange": [15, 20],
+    "titleTemplates": ["Morning catch: {target}", "Early bird special: {target}"],
+    "descriptionTemplates": ["Start your day with {target} catches.", "Catch {target} fish before noon."]
+  },
+  {
+    "type": "catch_count",
+    "difficulty": "medium",
+    "targetRange": [10, 25],
+    "rewardRange": [30, 60],
+    "titleTemplates": ["Fishing marathon: {target}", "Haul master: {target} fish", "Reel in {target} catches"],
+    "descriptionTemplates": ["Show your endurance by catching {target} fish.", "Catch {target} fish to prove your dedication."]
+  },
+  {
+    "type": "catch_count",
+    "difficulty": "medium",
+    "targetRange": [15, 20],
+    "rewardRange": [40, 55],
+    "titleTemplates": ["Consistent catcher: {target}", "Reliable angler: {target}"],
+    "descriptionTemplates": ["Maintain consistency with {target} catches today.", "Catch {target} fish steadily throughout the day."]
+  },
+  {
+    "type": "catch_count",
+    "difficulty": "hard",
+    "targetRange": [25, 50],
+    "rewardRange": [80, 150],
+    "titleTemplates": ["Master angler: {target}", "Legendary haul: {target} fish", "Prove yourself: {target}"],
+    "descriptionTemplates": ["Only true masters can catch {target} fish in a day.", "The ultimate challenge: catch {target} fish."]
+  },
+  {
+    "type": "catch_count",
+    "difficulty": "hard",
+    "targetRange": [30, 40],
+    "rewardRange": [100, 130],
+    "titleTemplates": ["Speed demon: {target}", "Rapid fire: {target} catches"],
+    "descriptionTemplates": ["Catch {target} fish with maximum efficiency.", "Test your speed with {target} catches."]
+  },
+  {
+    "type": "catch_rarity",
+    "difficulty": "easy",
+    "targetRange": [1, 2],
+    "rewardRange": [20, 35],
+    "titleTemplates": ["Rare find: {target}", "Quality catch: {target} rare"],
+    "descriptionTemplates": ["Catch {target} uncommon or rare fish.", "Find and catch {target} quality fish."]
+  },
+  {
+    "type": "catch_rarity",
+    "difficulty": "medium",
+    "targetRange": [2, 5],
+    "rewardRange": [50, 80],
+    "titleTemplates": ["Treasure hunter: {target} rare", "Quality seeker: {target}"],
+    "descriptionTemplates": ["Seek out {target} rare or better fish.", "Catch {target} high-quality specimens."]
+  },
+  {
+    "type": "catch_rarity",
+    "difficulty": "medium",
+    "targetRange": [3, 4],
+    "rewardRange": [60, 75],
+    "titleTemplates": ["Rare specimen hunt: {target}", "Collector's choice: {target}"],
+    "descriptionTemplates": ["Add {target} rare fish to your collection.", "Hunt for {target} rare catches today."]
+  },
+  {
+    "type": "catch_rarity",
+    "difficulty": "hard",
+    "targetRange": [5, 10],
+    "rewardRange": [120, 200],
+    "titleTemplates": ["Legendary pursuit: {target}", "Elite catch: {target} rare"],
+    "descriptionTemplates": ["Catch {target} rare or legendary fish.", "Only the best: catch {target} quality specimens."]
+  },
+  {
+    "type": "catch_rarity",
+    "difficulty": "hard",
+    "targetRange": [6, 8],
+    "rewardRange": [140, 180],
+    "titleTemplates": ["Master collector: {target}", "Elite hunter: {target}"],
+    "descriptionTemplates": ["Prove your skill by catching {target} rare fish.", "The ultimate collection: {target} rare catches."]
+  },
+  {
+    "type": "catch_size",
+    "difficulty": "easy",
+    "targetRange": [5, 12],
+    "rewardRange": [15, 30],
+    "titleTemplates": ["Catch a {target}lb fish", "Size matters: {target}lbs", "Trophy attempt: {target}lb"],
+    "descriptionTemplates": ["Land a fish weighing at least {target} pounds.", "Catch a {target} pound specimen."]
+  },
+  {
+    "type": "catch_size",
+    "difficulty": "easy",
+    "targetRange": [8, 10],
+    "rewardRange": [20, 28],
+    "titleTemplates": ["Decent catch: {target}lbs", "Good size: {target}lb"],
+    "descriptionTemplates": ["Find a {target}lb fish in the waters.", "Target a fish of at least {target} pounds."]
+  },
+  {
+    "type": "catch_size",
+    "difficulty": "medium",
+    "targetRange": [12, 25],
+    "rewardRange": [40, 70],
+    "titleTemplates": ["Big game: {target}lbs", "Trophy hunter: {target}lb", "Monster hunt: {target}lbs"],
+    "descriptionTemplates": ["Land a real trophy weighing {target} pounds.", "Catch a {target}lb monster from the deep."]
+  },
+  {
+    "type": "catch_size",
+    "difficulty": "medium",
+    "targetRange": [15, 20],
+    "rewardRange": [50, 65],
+    "titleTemplates": ["Heavy hauler: {target}lbs", "Size challenge: {target}lb"],
+    "descriptionTemplates": ["Pull in a {target}lb heavyweight.", "Target the big ones: {target} pounds minimum."]
+  },
+  {
+    "type": "catch_size",
+    "difficulty": "hard",
+    "targetRange": [25, 50],
+    "rewardRange": [100, 180],
+    "titleTemplates": ["Legendary size: {target}lbs", "Monster of the deep: {target}lb", "Giant slayer: {target}lbs"],
+    "descriptionTemplates": ["Catch a legendary {target} pound specimen.", "Only legends weigh {target} pounds."]
+  },
+  {
+    "type": "catch_size",
+    "difficulty": "hard",
+    "targetRange": [30, 40],
+    "rewardRange": [120, 160],
+    "titleTemplates": ["Titan catch: {target}lbs", "Gargantuan: {target}lb"],
+    "descriptionTemplates": ["Seek the giants: catch a {target}lb fish.", "The biggest challenge: {target} pounds."]
+  },
+  {
+    "type": "catch_species",
+    "difficulty": "easy",
+    "targetRange": [2, 3],
+    "rewardRange": [15, 25],
+    "titleTemplates": ["Variety pack: {target} species", "Diverse catch: {target}", "Collector: {target} species"],
+    "descriptionTemplates": ["Catch {target} different species of fish.", "Diversify with {target} unique species."]
+  },
+  {
+    "type": "catch_species",
+    "difficulty": "easy",
+    "targetRange": [2, 2],
+    "rewardRange": [18, 22],
+    "titleTemplates": ["Dual catch: {target} species", "Two of a kind: {target}"],
+    "descriptionTemplates": ["Find {target} different species today.", "Catch {target} types of fish."]
+  },
+  {
+    "type": "catch_species",
+    "difficulty": "medium",
+    "targetRange": [3, 6],
+    "rewardRange": [35, 60],
+    "titleTemplates": ["Species hunt: {target}", "Biodiversity: {target} species", "Ecologist: {target}"],
+    "descriptionTemplates": ["Catch {target} different species of fish.", "Explore the waters for {target} species."]
+  },
+  {
+    "type": "catch_species",
+    "difficulty": "medium",
+    "targetRange": [4, 5],
+    "rewardRange": [40, 55],
+    "titleTemplates": ["Multi-species master: {target}", "Diversity king: {target}"],
+    "descriptionTemplates": ["Master variety: catch {target} species.", "Show your range with {target} different species."]
+  },
+  {
+    "type": "catch_species",
+    "difficulty": "hard",
+    "targetRange": [6, 12],
+    "rewardRange": [90, 160],
+    "titleTemplates": ["Master collector: {target} species", "Complete the set: {target}", "Encyclopedia: {target} species"],
+    "descriptionTemplates": ["Catch {target} different species to prove mastery.", "A true expert catches {target} species."]
+  },
+  {
+    "type": "catch_species",
+    "difficulty": "hard",
+    "targetRange": [8, 10],
+    "rewardRange": [110, 145],
+    "titleTemplates": ["Species marathon: {target}", "Ultimate variety: {target}"],
+    "descriptionTemplates": ["Find all {target} species in one day.", "The ultimate diversity challenge: {target} species."]
+  },
+  {
+    "type": "earn_credits",
+    "difficulty": "easy",
+    "targetRange": [30, 100],
+    "rewardRange": [10, 25],
+    "titleTemplates": ["Earn {target} credits", "Profit starter: {target}", "Wealth builder: {target}"],
+    "descriptionTemplates": ["Earn {target} credits from selling fish or tasks.", "Make {target} credits through fishing."]
+  },
+  {
+    "type": "earn_credits",
+    "difficulty": "easy",
+    "targetRange": [50, 75],
+    "rewardRange": [15, 22],
+    "titleTemplates": ["Quick profit: {target}", "Easy money: {target} credits"],
+    "descriptionTemplates": ["A quick {target} credits will do.", "Earn {target} credits easily today."]
+  },
+  {
+    "type": "earn_credits",
+    "difficulty": "medium",
+    "targetRange": [100, 300],
+    "rewardRange": [35, 70],
+    "titleTemplates": ["Business mind: {target}", "Entrepreneur: {target} credits", "Profit hunter: {target}"],
+    "descriptionTemplates": ["Build wealth: earn {target} credits today.", "Your goal: {target} credits from fishing."]
+  },
+  {
+    "type": "earn_credits",
+    "difficulty": "medium",
+    "targetRange": [150, 250],
+    "rewardRange": [45, 65],
+    "titleTemplates": ["Credit rush: {target}", "Money maker: {target} credits"],
+    "descriptionTemplates": ["Focus on profit: {target} credits.", "Turn fish into {target} credits."]
+  },
+  {
+    "type": "earn_credits",
+    "difficulty": "hard",
+    "targetRange": [300, 800],
+    "rewardRange": [100, 200],
+    "titleTemplates": ["Tycoon: {target} credits", "Wealth master: {target}", "Fortune builder: {target}"],
+    "descriptionTemplates": ["Build a fortune: earn {target} credits.", "The big money: {target} credits in one day."]
+  },
+  {
+    "type": "earn_credits",
+    "difficulty": "hard",
+    "targetRange": [400, 600],
+    "rewardRange": [130, 180],
+    "titleTemplates": ["Credit king: {target}", "Profit legend: {target} credits"],
+    "descriptionTemplates": ["Become a credit king: {target} credits.", "Master the market: earn {target} credits."]
+  },
+  {
+    "type": "talk_to_npc",
+    "difficulty": "easy",
+    "targetRange": [1, 2],
+    "rewardRange": [10, 20],
+    "titleTemplates": ["Chat with {target} NPCs", "Social starter: {target}", "Say hello: {target} NPCs"],
+    "descriptionTemplates": ["Have a conversation with {target} NPCs.", "Talk to {target} different characters."]
+  },
+  {
+    "type": "talk_to_npc",
+    "difficulty": "easy",
+    "targetRange": [1, 1],
+    "rewardRange": [12, 18],
+    "titleTemplates": ["First contact: {target}", "Greetings: {target} NPC"],
+    "descriptionTemplates": ["Start a conversation with {target} NPC.", "Talk to {target} villager today."]
+  },
+  {
+    "type": "talk_to_npc",
+    "difficulty": "medium",
+    "targetRange": [2, 4],
+    "rewardRange": [25, 50],
+    "titleTemplates": ["Networker: {target} NPCs", "Social butterfly: {target}", "Community: {target} NPCs"],
+    "descriptionTemplates": ["Connect with {target} NPCs today.", "Chat with {target} different characters."]
+  },
+  {
+    "type": "talk_to_npc",
+    "difficulty": "medium",
+    "targetRange": [3, 3],
+    "rewardRange": [30, 45],
+    "titleTemplates": ["Triple chat: {target}", "Three conversations: {target}"],
+    "descriptionTemplates": ["Talk to {target} NPCs for tips and info.", "Build connections with {target} characters."]
+  },
+  {
+    "type": "talk_to_npc",
+    "difficulty": "hard",
+    "targetRange": [4, 7],
+    "rewardRange": [60, 120],
+    "titleTemplates": ["Popular figure: {target} NPCs", "Everyone's friend: {target}", "Social master: {target} NPCs"],
+    "descriptionTemplates": ["Be social: talk to {target} NPCs.", "Build a network of {target} conversations."]
+  },
+  {
+    "type": "talk_to_npc",
+    "difficulty": "hard",
+    "targetRange": [5, 6],
+    "rewardRange": [75, 100],
+    "titleTemplates": ["Town crier: {target}", "Community pillar: {target} NPCs"],
+    "descriptionTemplates": ["Know everyone: {target} NPCs.", "Connect with {target} characters across town."]
+  }
+]

@@ -1,0 +1,139 @@
+# NPC Relationships Configuration
+# Defines relationships between NPCs and gossip rules
+
+relationships:
+  # Gustav (Mentor) relationships
+  - npcA: "Gustav"
+    npcB: "Riley"
+    type: "rival"
+    strength: 30
+    history:
+      - event: "teaching_disagreement"
+        date: "2026-01-15T10:00:00Z"
+        delta: -5
+      - event: "tournament_competition"
+        date: "2026-02-20T14:30:00Z"
+        delta: -10
+
+  - npcA: "Gustav"
+    npcB: "NanaKiko"
+    type: "friend"
+    strength: 70
+    history:
+      - event: "decades_of_friendship"
+        date: "2020-01-01T00:00:00Z"
+        delta: 50
+      - event: "shared_fishing_knowledge"
+        date: "2025-06-10T08:00:00Z"
+        delta: 10
+
+  - npcA: "Gustav"
+    npcB: "Gus"
+    type: "neutral"
+    strength: 40
+    history:
+      - event: "regular_customer"
+        date: "2025-12-01T12:00:00Z"
+        delta: 5
+
+  # Riley (Competitor) relationships
+  - npcA: "Riley"
+    npcB: "NanaKiko"
+    type: "neutral"
+    strength: 10
+    history:
+      - event: "skeptical_of_mysticism"
+        date: "2025-08-15T16:00:00Z"
+        delta: -5
+
+  - npcA: "Riley"
+    npcB: "Gus"
+    type: "neutral"
+    strength: 50
+    history:
+      - event: "frequent_equipment_buyer"
+        date: "2025-11-20T09:00:00Z"
+        delta: 15
+      - event: "sponsorship_deal"
+        date: "2026-01-10T11:00:00Z"
+        delta: 10
+
+  # NanaKiko (Mystic) relationships
+  - npcA: "NanaKiko"
+    npcB: "Gus"
+    type: "friend"
+    strength: 60
+    history:
+      - event: "trading_partners"
+        date: "2024-03-01T14:00:00Z"
+        delta: 20
+      - event: "mutual_respect"
+        date: "2025-07-22T10:00:00Z"
+        delta: 10
+
+  # Additional NPC relationships
+  - npcA: "Bella"
+    npcB: "Riley"
+    type: "friend"
+    strength: 55
+    history:
+      - event: "social_events"
+        date: "2025-09-10T18:00:00Z"
+        delta: 15
+
+  - npcA: "Bella"
+    npcB: "Gus"
+    type: "friend"
+    strength: 65
+    history:
+      - event: "business_networking"
+        date: "2025-10-05T15:00:00Z"
+        delta: 20
+
+  - npcA: "Bella"
+    npcB: "NanaKiko"
+    type: "neutral"
+    strength: 35
+    history:
+      - event: "curious_about_wisdom"
+        date: "2026-02-01T11:00:00Z"
+        delta: 10
+
+# Gossip spread rules by relationship type
+gossip_rules:
+  friend:
+    spreadRate: 0.5
+    delayDays: 0
+    accuracy: 0.95
+
+  closeFriend:
+    spreadRate: 0.7
+    delayDays: 0
+    accuracy: 1.0
+
+  mentor:
+    spreadRate: 0.4
+    delayDays: 1
+    accuracy: 0.9
+
+  rival:
+    spreadRate: 0.3
+    delayDays: 2
+    accuracy: 0.7
+
+  neutral:
+    spreadRate: 0.1
+    delayDays: 3
+    accuracy: 0.6
+
+  enemy:
+    spreadRate: 0.0
+    delayDays: 0
+    accuracy: 0.5
+
+# NPC Archetypes for reference
+# Gustav  - Mentor (patient, wise, encouraging)
+# Riley   - Competitor (ambitious, driven, competitive)
+# Gus     - Merchant (practical, deal-maker, shrewd)
+# NanaKiko - Mystic (enigmatic, hints, knows hidden things)
+# Bella   - Socialite (friendly, talkative, knows everyone)
