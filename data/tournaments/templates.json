@@ -1,0 +1,261 @@
+{
+  "version": 1,
+  "description": "Tournament templates for CraftMind",
+  "lastUpdated": "2026-03-27",
+
+  "daily": {
+    "id": "daily_most_fish",
+    "name": "Daily Catch Challenge",
+    "description": "Catch the most fish today to win prizes!",
+    "type": "daily",
+    "theme": "most_fish",
+    "duration": 1440,
+    "entryFee": 0,
+    "prizePool": 150,
+    "prizeDistribution": [0.5, 0.3, 0.2],
+    "scoringRules": {
+      "metric": "fish_count",
+      "higherIsBetter": true,
+      "accumulate": true
+    },
+    "rules": {
+      "registration": "auto_on_catch",
+      "scoring": "per_fish",
+      "reset": "daily_midnight_utc"
+    },
+    "rewards": {
+      "1st": 75,
+      "2nd": 45,
+      "3rd": 30
+    }
+  },
+
+  "daily_rare": {
+    "id": "daily_rare_hunter",
+    "name": "Daily Rare Hunter",
+    "description": "Catch the most rare fish today!",
+    "type": "daily",
+    "theme": "rare_count",
+    "duration": 1440,
+    "entryFee": 0,
+    "prizePool": 200,
+    "prizeDistribution": [0.5, 0.3, 0.2],
+    "scoringRules": {
+      "metric": "rare_fish_count",
+      "higherIsBetter": true,
+      "minRarity": "rare"
+    },
+    "rules": {
+      "registration": "auto_on_rare_catch",
+      "scoring": "per_rare_fish",
+      "reset": "daily_midnight_utc"
+    }
+  },
+
+  "weekly": {
+    "id": "weekly_championship",
+    "name": "Weekly Championship",
+    "description": "Weekly fishing competition with big prizes!",
+    "type": "weekly",
+    "theme": "most_fish",
+    "duration": 10080,
+    "entryFee": 100,
+    "prizePool": 1000,
+    "prizeDistribution": [0.7, 0.2, 0.1],
+    "scoringRules": {
+      "metric": "fish_count",
+      "higherIsBetter": true,
+      "accumulate": true
+    },
+    "rules": {
+      "registration": "manual_with_fee",
+      "scoring": "per_fish",
+      "reset": "weekly_monday_utc"
+    },
+    "rewards": {
+      "1st": "70% of pool",
+      "2nd": "20% of pool",
+      "3rd": "10% of pool"
+    }
+  },
+
+  "weekly_biggest": {
+    "id": "weekly_trophy_hunter",
+    "name": "Trophy Hunter",
+    "description": "Catch the biggest fish this week!",
+    "type": "weekly",
+    "theme": "biggest_catch",
+    "duration": 10080,
+    "entryFee": 100,
+    "prizePool": 1000,
+    "prizeDistribution": [0.7, 0.2, 0.1],
+    "scoringRules": {
+      "metric": "biggest_fish",
+      "higherIsBetter": true,
+      "accumulate": false
+    },
+    "rules": {
+      "registration": "manual_with_fee",
+      "scoring": "max_size",
+      "reset": "weekly_monday_utc"
+    }
+  },
+
+  "weekly_rarest": {
+    "id": "weekly_rare_collector",
+    "name": "Rare Collector",
+    "description": "Catch the rarest fish this week!",
+    "type": "weekly",
+    "theme": "rarest_fish",
+    "duration": 10080,
+    "entryFee": 100,
+    "prizePool": 1000,
+    "prizeDistribution": [0.7, 0.2, 0.1],
+    "scoringRules": {
+      "metric": "rarity_score",
+      "higherIsBetter": true,
+      "accumulate": false,
+      "rarityPoints": {
+        "common": 1,
+        "uncommon": 3,
+        "rare": 10,
+        "epic": 25,
+        "legendary": 50,
+        "mythic": 100
+      }
+    },
+    "rules": {
+      "registration": "manual_with_fee",
+      "scoring": "best_rarity",
+      "reset": "weekly_monday_utc"
+    }
+  },
+
+  "weekly_speed": {
+    "id": "weekly_speed_demon",
+    "name": "Speed Demon",
+    "description": "Catch the most fish in a single hour!",
+    "type": "weekly",
+    "theme": "speed_fishing",
+    "duration": 10080,
+    "entryFee": 100,
+    "prizePool": 1000,
+    "prizeDistribution": [0.7, 0.2, 0.1],
+    "scoringRules": {
+      "metric": "hourly_catch",
+      "higherIsBetter": true,
+      "timeWindow": 3600,
+      "accumulate": false
+    },
+    "rules": {
+      "registration": "manual_with_fee",
+      "scoring": "best_hourly_session",
+      "reset": "weekly_monday_utc"
+    }
+  },
+
+  "seasonal": {
+    "id": "seasonal_leaderboard",
+    "name": "Seasonal Championship",
+    "description": "Month-long competition with massive prizes!",
+    "type": "seasonal",
+    "theme": "points",
+    "duration": 44640,
+    "entryFee": 0,
+    "prizePool": 10000,
+    "prizeDistribution": [0.5, 0.25, 0.15, 0.07, 0.03],
+    "scoringRules": {
+      "metric": "seasonal_points",
+      "higherIsBetter": true,
+      "accumulate": true,
+      "pointValues": {
+        "daily_win": 10,
+        "daily_top3": 5,
+        "weekly_win": 25,
+        "weekly_top3": 15,
+        "rare_catch": 2,
+        "legendary_catch": 10
+      }
+    },
+    "rules": {
+      "registration": "auto",
+      "scoring": "accumulated_points",
+      "reset": "monthly_first_day_utc"
+    },
+    "rewards": {
+      "1st": "50% of pool",
+      "2nd": "25% of pool",
+      "3rd": "15% of pool",
+      "4th": "7% of pool",
+      "5th": "3% of pool"
+    }
+  },
+
+  "event_weekend": {
+    "id": "weekend_special",
+    "name": "Weekend Warrior",
+    "description": "Special weekend tournament with bonus rewards!",
+    "type": "event",
+    "theme": "combined",
+    "duration": 2880,
+    "entryFee": 50,
+    "prizePool": 2500,
+    "prizeDistribution": [0.6, 0.25, 0.1, 0.05],
+    "scoringRules": {
+      "metric": "combined_score",
+      "higherIsBetter": true,
+      "components": {
+        "fish_count": 1,
+        "rarity_bonus": 2,
+        "size_bonus": 0.5
+      }
+    },
+    "rules": {
+      "registration": "manual_with_fee",
+      "scoring": "weighted_combined",
+      "schedule": "saturday_00:00_sunday_23:59"
+    }
+  },
+
+  "themes": {
+    "most_fish": {
+      "name": "Catch Master",
+      "description": "Catch the most fish",
+      "icon": "fish"
+    },
+    "biggest_catch": {
+      "name": "Trophy Hunter",
+      "description": "Catch the biggest fish",
+      "icon": "trophy"
+    },
+    "rarest_fish": {
+      "name": "Rare Collector",
+      "description": "Catch the rarest fish",
+      "icon": "star"
+    },
+    "speed_fishing": {
+      "name": "Speed Demon",
+      "description": "Most catches in one hour",
+      "icon": "lightning"
+    }
+  },
+
+  "rarities": {
+    "common": 1,
+    "uncommon": 3,
+    "rare": 10,
+    "epic": 25,
+    "legendary": 50,
+    "mythic": 100
+  },
+
+  "defaults": {
+    "prizeDistribution": [0.7, 0.2, 0.1],
+    "entryFeeDaily": 0,
+    "entryFeeWeekly": 100,
+    "entryFeeSeasonal": 0,
+    "prizePoolDaily": 150,
+    "prizePoolWeekly": 1000,
+    "prizePoolSeasonal": 10000
+  }
+}
