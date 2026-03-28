@@ -1,0 +1,604 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-03-27T00:00:00Z",
+  "description": "Fishing quest definitions for CraftMind",
+  "quests": [
+    {
+      "id": "fishermans_first_catch",
+      "type": "main_story",
+      "title": "The Fisher's First Catch",
+      "description": "Old Man Hemlock needs help restocking the lake. Catch your first fish.",
+      "games": ["fishing"],
+      "chapter": 1,
+      "order": 1,
+      "difficulty": "easy",
+      "objectives": [
+        {
+          "id": "catch_first",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 1,
+          "required": 1,
+          "description": "Catch any fish in Sitka Sound"
+        }
+      ],
+      "rewards": {
+        "experience": 100,
+        "currency": { "coins": 50 },
+        "items": [{ "id": "fishing_rod", "nbt": "{Enchantments:[{id:lure,lvl:1}]}" }],
+        "unlocks": ["fishing_lesson_basics", "daily_fishing_haul"]
+      },
+      "npcDialogue": {
+        "start": "dialogue_hemlock_intro",
+        "complete": "dialogue_hemlock_proud"
+      },
+      "prerequisites": [],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "fishing_lesson_basics",
+      "type": "main_story",
+      "title": "Fishing Basics",
+      "description": "Learn the fundamentals by catching 10 fish.",
+      "games": ["fishing"],
+      "chapter": 1,
+      "order": 2,
+      "difficulty": "easy",
+      "objectives": [
+        {
+          "id": "catch_10",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 10,
+          "required": 10,
+          "description": "Catch 10 fish total"
+        }
+      ],
+      "rewards": {
+        "experience": 150,
+        "currency": { "coins": 100, "fisher_tokens": 5 },
+        "items": [{ "id": "bamboo_fishing_rod", "count": 1 }],
+        "unlocks": ["fishing_lesson_variety"]
+      },
+      "prerequisites": ["fishermans_first_catch"],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "fishing_lesson_variety",
+      "type": "main_story",
+      "title": "Variety is Key",
+      "description": "A good angler knows many species. Catch 5 different types of fish.",
+      "games": ["fishing"],
+      "chapter": 1,
+      "order": 3,
+      "difficulty": "easy",
+      "objectives": [
+        {
+          "id": "catch_variety",
+          "type": "collection",
+          "target": "unique_fish_species",
+          "count": 5,
+          "required": 5,
+          "description": "Catch 5 different species"
+        }
+      ],
+      "rewards": {
+        "experience": 200,
+        "currency": { "coins": 150, "fisher_tokens": 10 },
+        "items": [{ "id": "iron_fishing_rod", "count": 1 }],
+        "unlocks": ["ocean_exploration", "river_mastery"]
+      },
+      "prerequisites": ["fishing_lesson_basics"],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "daily_fishing_haul",
+      "type": "daily",
+      "title": "Daily Haul",
+      "description": "Catch 10 fish today for the market.",
+      "games": ["fishing"],
+      "difficulty": "easy",
+      "objectives": [
+        {
+          "id": "catch_fish",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 10,
+          "required": 10,
+          "description": "Catch 10 fish"
+        }
+      ],
+      "rewards": {
+        "experience": 50,
+        "currency": { "coins": 100, "fisher_tokens": 5 }
+      },
+      "prerequisites": ["fishermans_first_catch"],
+      "timeLimit": { "type": "daily_reset" },
+      "repeatable": true
+    },
+    {
+      "id": "daily_rare_catch",
+      "type": "daily",
+      "title": "Rare Find of the Day",
+      "description": "Catch a rare (or better) fish today.",
+      "games": ["fishing"],
+      "difficulty": "medium",
+      "objectives": [
+        {
+          "id": "catch_rare",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 1,
+          "required": 1,
+          "conditions": { "minRarity": "rare" },
+          "description": "Catch a rare or better fish"
+        }
+      ],
+      "rewards": {
+        "experience": 150,
+        "currency": { "coins": 300, "fisher_tokens": 15 }
+      },
+      "prerequisites": ["fishing_lesson_variety"],
+      "timeLimit": { "type": "daily_reset" },
+      "repeatable": true
+    },
+    {
+      "id": "daily_variety_angler",
+      "type": "daily",
+      "title": "Eclectic Angler",
+      "description": "Catch 5 different species of fish today.",
+      "games": ["fishing"],
+      "difficulty": "medium",
+      "objectives": [
+        {
+          "id": "catch_variety",
+          "type": "collection",
+          "target": "unique_fish_species",
+          "count": 5,
+          "required": 5,
+          "description": "Catch 5 different species"
+        }
+      ],
+      "rewards": {
+        "experience": 75,
+        "currency": { "coins": 150, "fisher_tokens": 10 }
+      },
+      "prerequisites": ["fishing_lesson_variety"],
+      "timeLimit": { "type": "daily_reset" },
+      "repeatable": true
+    },
+    {
+      "id": "ocean_exploration",
+      "type": "main_story",
+      "title": "Ocean Exploration",
+      "description": "Venture into the ocean and catch 10 ocean fish.",
+      "games": ["fishing"],
+      "chapter": 2,
+      "order": 1,
+      "difficulty": "medium",
+      "objectives": [
+        {
+          "id": "ocean_catch",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 10,
+          "required": 10,
+          "conditions": { "biome": ["ocean", "deep_ocean"] },
+          "description": "Catch 10 fish in ocean biomes"
+        }
+      ],
+      "rewards": {
+        "experience": 300,
+        "currency": { "coins": 250, "fisher_tokens": 20 },
+        "items": [{ "id": "ocean_rod_skin", "count": 1 }],
+        "unlocks": ["deep_ocean_danger"]
+      },
+      "prerequisites": ["fishing_lesson_variety"],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "river_mastery",
+      "type": "main_story",
+      "title": "River Mastery",
+      "description": "Master the rivers by catching 10 river fish.",
+      "games": ["fishing"],
+      "chapter": 2,
+      "order": 2,
+      "difficulty": "medium",
+      "objectives": [
+        {
+          "id": "river_catch",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 10,
+          "required": 10,
+          "conditions": { "biome": "river" },
+          "description": "Catch 10 fish in river biomes"
+        }
+      ],
+      "rewards": {
+        "experience": 300,
+        "currency": { "coins": 250, "fisher_tokens": 20 },
+        "items": [{ "id": "river_rod_skin", "count": 1 }],
+        "unlocks": ["golden_carp_quest"]
+      },
+      "prerequisites": ["fishing_lesson_variety"],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "challenge_big_catch",
+      "type": "challenge",
+      "title": "The Big One",
+      "description": "Catch a fish over 100cm in length.",
+      "games": ["fishing"],
+      "difficulty": "hard",
+      "objectives": [
+        {
+          "id": "catch_big",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 1,
+          "required": 1,
+          "conditions": { "minSize": 100 },
+          "description": "Catch a fish over 100cm"
+        }
+      ],
+      "rewards": {
+        "experience": 500,
+        "currency": { "coins": 500 },
+        "items": [{ "id": "golden_worm", "count": 5 }],
+        "titles": ["Big Game Hunter"]
+      },
+      "prerequisites": ["fishing_lesson_basics"],
+      "timeLimit": null,
+      "repeatable": true
+    },
+    {
+      "id": "challenge_legendary_marlin",
+      "type": "challenge",
+      "title": "Legendary Marlin",
+      "description": "Catch a fish over 200cm in length.",
+      "games": ["fishing"],
+      "difficulty": "legendary",
+      "objectives": [
+        {
+          "id": "catch_legendary_size",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 1,
+          "required": 1,
+          "conditions": { "minSize": 200 },
+          "description": "Catch a fish over 200cm"
+        }
+      ],
+      "rewards": {
+        "experience": 2000,
+        "currency": { "coins": 2000 },
+        "items": [{ "id": "diamond_fishing_rod", "count": 1 }],
+        "titles": ["Leviathan Hunter"]
+      },
+      "prerequisites": ["challenge_big_catch"],
+      "timeLimit": null,
+      "repeatable": true
+    },
+    {
+      "id": "challenge_speed_fisher",
+      "type": "challenge",
+      "title": "Speed Fisher",
+      "description": "Catch 20 fish in 10 minutes.",
+      "games": ["fishing"],
+      "difficulty": "hard",
+      "objectives": [
+        {
+          "id": "speed_catch",
+          "type": "timed",
+          "target": "catch_fish",
+          "count": 20,
+          "required": 20,
+          "timeLimit": 600,
+          "description": "Catch 20 fish in 10 minutes"
+        }
+      ],
+      "rewards": {
+        "experience": 400,
+        "currency": { "coins": 400 },
+        "items": [{ "id": "speed_fisher_badge", "count": 1 }]
+      },
+      "prerequisites": ["fishing_lesson_basics"],
+      "timeLimit": { "type": "duration", "value": 600 },
+      "repeatable": true
+    },
+    {
+      "id": "challenge_night_owl",
+      "type": "challenge",
+      "title": "Night Owl",
+      "description": "Catch 20 fish during nighttime.",
+      "games": ["fishing"],
+      "difficulty": "medium",
+      "objectives": [
+        {
+          "id": "night_catch",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 20,
+          "required": 20,
+          "conditions": { "timeOfDay": "night" },
+          "description": "Catch 20 fish at night"
+        }
+      ],
+      "rewards": {
+        "experience": 300,
+        "currency": { "coins": 300 },
+        "items": [{ "id": "night_vision_potion", "count": 3 }],
+        "titles": ["Night Owl"]
+      },
+      "prerequisites": ["fishing_lesson_basics"],
+      "timeLimit": null,
+      "repeatable": true
+    },
+    {
+      "id": "challenge_storm_chaser",
+      "type": "challenge",
+      "title": "Storm Chaser",
+      "description": "Catch 10 fish during rain or storms.",
+      "games": ["fishing"],
+      "difficulty": "medium",
+      "objectives": [
+        {
+          "id": "rain_catch",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 10,
+          "required": 10,
+          "conditions": { "weather": ["rain", "thunder"] },
+          "description": "Catch 10 fish in bad weather"
+        }
+      ],
+      "rewards": {
+        "experience": 350,
+        "currency": { "coins": 350 },
+        "items": [{ "id": "storm_rod_skin", "count": 1 }],
+        "titles": ["Storm Chaser"]
+      },
+      "prerequisites": ["fishing_lesson_basics"],
+      "timeLimit": null,
+      "repeatable": true
+    },
+    {
+      "id": "golden_carp_quest",
+      "type": "challenge",
+      "title": "The Golden Carp",
+      "description": "Catch the elusive Golden Carp in the river.",
+      "games": ["fishing"],
+      "difficulty": "hard",
+      "objectives": [
+        {
+          "id": "catch_golden_carp",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 1,
+          "required": 1,
+          "conditions": { "species": "golden_carp" },
+          "description": "Catch a Golden Carp"
+        }
+      ],
+      "rewards": {
+        "experience": 800,
+        "currency": { "coins": 1000 },
+        "items": [{ "id": "golden_rod_skin", "count": 1 }, { "id": "enchanted_book_luck_2", "count": 1 }],
+        "titles": ["Golden Angler"]
+      },
+      "prerequisites": ["river_mastery"],
+      "timeLimit": null,
+      "repeatable": true
+    },
+    {
+      "id": "discovery_hidden_cove",
+      "type": "discovery",
+      "title": "???",
+      "description": "???",
+      "games": ["fishing"],
+      "hidden": true,
+      "objectives": [
+        {
+          "id": "find_cove",
+          "type": "discovery",
+          "target": "location",
+          "locationId": "secret_cove",
+          "description": "Find the hidden cove"
+        },
+        {
+          "id": "catch_rare",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 1,
+          "required": 1,
+          "conditions": { "rarity": "rare", "location": "secret_cove" },
+          "description": "Catch a rare fish in the cove"
+        }
+      ],
+      "rewards": {
+        "experience": 500,
+        "items": [{ "id": "treasure_map", "count": 1 }],
+        "unlocks": ["secret_cove_fast_travel"],
+        "achievements": ["explorer_cove_discoverer"]
+      },
+      "prerequisites": [],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "social_fishing_derby",
+      "type": "social",
+      "title": "Sitka Sound Fishing Derby",
+      "description": "Compete in a fishing tournament with at least 3 participants.",
+      "games": ["fishing"],
+      "minParticipants": 3,
+      "maxParticipants": 8,
+      "objectives": [
+        {
+          "id": "join_derby",
+          "type": "social",
+          "action": "join_event",
+          "eventId": "fishing_derby",
+          "description": "Join the fishing derby"
+        },
+        {
+          "id": "catch_most",
+          "type": "competition",
+          "target": "catch_fish",
+          "winCondition": "highest_count",
+          "description": "Catch the most fish"
+        }
+      ],
+      "rewards": {
+        "winner": {
+          "experience": 500,
+          "items": [{ "id": "trophy_gold_fishing", "count": 1 }],
+          "titles": ["Derby Champion"]
+        },
+        "participant": {
+          "experience": 100,
+          "items": [{ "id": "participation_badge", "count": 1 }]
+        }
+      },
+      "prerequisites": ["fishing_lesson_variety"],
+      "timeLimit": null,
+      "repeatable": true
+    },
+    {
+      "id": "mastery_encyclopedia_25",
+      "type": "challenge",
+      "title": "Hobbyist Collector",
+      "description": "Fill your encyclopedia by discovering 25 different species.",
+      "games": ["fishing"],
+      "difficulty": "medium",
+      "objectives": [
+        {
+          "id": "discover_species",
+          "type": "collection",
+          "target": "unique_fish_species",
+          "count": 25,
+          "required": 25,
+          "description": "Discover 25 species"
+        }
+      ],
+      "rewards": {
+        "experience": 1000,
+        "currency": { "coins": 1500, "fisher_tokens": 50 },
+        "items": [{ "id": "iron_fishing_rod", "count": 1 }],
+        "titles": ["Hobbyist"]
+      },
+      "prerequisites": ["fishing_lesson_variety"],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "mastery_encyclopedia_50",
+      "type": "challenge",
+      "title": "Expert Naturalist",
+      "description": "Become an expert by discovering 50 different species.",
+      "games": ["fishing"],
+      "difficulty": "hard",
+      "objectives": [
+        {
+          "id": "discover_species",
+          "type": "collection",
+          "target": "unique_fish_species",
+          "count": 50,
+          "required": 50,
+          "description": "Discover 50 species"
+        }
+      ],
+      "rewards": {
+        "experience": 2500,
+        "currency": { "coins": 3000, "fisher_tokens": 100 },
+        "items": [{ "id": "diamond_fishing_rod", "count": 1 }],
+        "titles": ["Expert Angler"]
+      },
+      "prerequisites": ["mastery_encyclopedia_25"],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "chain_fisherman_dream",
+      "type": "main_story",
+      "title": "Fisherman's Dream",
+      "description": "Complete the ultimate fishing challenge.",
+      "games": ["fishing"],
+      "chapter": 5,
+      "order": 1,
+      "difficulty": "legendary",
+      "objectives": [
+        {
+          "id": "catch_tuna",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 5,
+          "required": 5,
+          "conditions": { "species": "bluefin_tuna" },
+          "description": "Catch 5 Bluefin Tuna"
+        },
+        {
+          "id": "catch_swordfish",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 3,
+          "required": 3,
+          "conditions": { "species": "swordfish" },
+          "description": "Catch 3 Swordfish"
+        },
+        {
+          "id": "catch_legendary",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 1,
+          "required": 1,
+          "conditions": { "rarity": "legendary" },
+          "description": "Catch a legendary fish"
+        }
+      ],
+      "rewards": {
+        "experience": 5000,
+        "currency": { "coins": 10000, "fisher_tokens": 500 },
+        "items": [{ "id": "netherite_fishing_rod", "count": 1 }],
+        "titles": ["Master of the Sea"]
+      },
+      "prerequisites": ["mastery_encyclopedia_50", "challenge_legendary_marlin"],
+      "timeLimit": null,
+      "repeatable": false
+    },
+    {
+      "id": "chain_1000_fish",
+      "type": "challenge",
+      "title": "Millennium Fisher",
+      "description": "Catch 1000 fish total.",
+      "games": ["fishing"],
+      "difficulty": "hard",
+      "objectives": [
+        {
+          "id": "catch_1000",
+          "type": "action",
+          "target": "catch_fish",
+          "count": 1000,
+          "required": 1000,
+          "description": "Catch 1000 fish"
+        }
+      ],
+      "rewards": {
+        "experience": 3000,
+        "currency": { "coins": 5000, "fisher_tokens": 200 },
+        "items": [{ "id": "millennium_badge", "count": 1 }],
+        "titles": ["Millennium Fisher"]
+      },
+      "prerequisites": ["fishing_lesson_basics"],
+      "timeLimit": null,
+      "repeatable": false
+    }
+  ]
+}
