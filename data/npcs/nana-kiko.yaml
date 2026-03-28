@@ -1,0 +1,301 @@
+# Nana Kiko - The Weather-Wise Mystic Elder
+# Located at the meditation rock in Sitka Sound
+
+name: Nana Kiko
+archetype: mystic
+
+# Appearance and spawn position
+appearance:
+  skin: nana_kiko_elder
+  description: An impossibly old woman with knowing eyes that seem to see beyond the present. Sits motionless by the water, appearing to commune with the waves themselves.
+
+position:
+  x: 90
+  y: 67
+  z: 80
+  world: world
+
+# Schedule - where Nana Kiko can be found at different times
+schedule:
+  dawn: meditation_rock
+  day: meditation_rock
+  dusk: meditation_rock
+  night: spirit_garden
+
+# Time-based locations
+locations:
+  meditation_rock:
+    description: The ancient meditation rock overlooking the sound
+    position:
+      x: 90
+      y: 67
+      z: 80
+    radius: 10
+  spirit_garden:
+    description: The hidden spirit garden
+    position:
+      x: 75
+      y: 65
+      z: 60
+    radius: 8
+
+# Dialogue templates
+dialogue:
+  greeting:
+    morning:
+      - "The dawn speaks to those who listen. What does it tell you?"
+      - "Early. The spirits are still awake. They whisper of fish."
+      - "You rise with the sun. Good. The fish do too."
+    afternoon:
+      - "The midday sun pushes the wise fish deep. Patience, child."
+      - "Afternoon. The water is quieter. Listening. As should you be."
+      - "The sun watches. The water remembers. What do you seek?"
+    evening:
+      - "Dusk approaches. The boundary between worlds thins. The rare ones stir."
+      - "Evening. The fish speak louder now. Can you hear them?"
+      - "The sunset colors the water. Legend says the golden fish appear at such times."
+    night:
+      - "Night. The water becomes a mirror to other realms. Fish carefully."
+      - "Out in darkness? Good. The best secrets are found at night."
+      - "The moon watches over us. It knows where the fish sleep."
+
+  idle:
+    - "*sits motionless, eyes on the water*"
+    - "*whispers something unintelligible to the waves*"
+    - "The salmon know..."
+    - "*traces patterns in the sand that resemble fish migrations*"
+    - "The river remembers every fish that ever swam it."
+    - "*appears to be listening to something no one else can hear*"
+
+  player_catch:
+    common:
+      - "A catch. The water provides. The water remembers."
+      - "You caught a fish. But did the fish let itself be caught?"
+      - "Every fish has a story. This one chose you. Briefly."
+      - "The fish came to you. The water guided it."
+    uncommon:
+      - "This one has wisdom. You can see it in its eyes."
+      - "An uncommon spirit. The water offered you something special."
+      - "This fish has swum many tides. Respect its journey."
+      - "The water trusts you with this one. Do not take that lightly."
+    rare:
+      - "Rare indeed. The water has bestowed a great gift upon you."
+      - "This fish... I sense its ancestors. They are pleased."
+      - "The spirits guided this catch. They see potential in you."
+      - "Rare fish reveal themselves to rare souls. What does that tell you?"
+    legendary:
+      - "A legendary spirit has chosen you. This is... significant."
+      - "The water has not offered such a catch in many seasons. You are blessed."
+      - "Legend becomes reality in your hands. The water speaks highly of you."
+      - "This fish... it is not merely caught. It has accepted you."
+
+  player_ask_forecast:
+    - "You ask about the future? The water knows. Listen."
+    - "Tomorrow's weather is written in today's ripples. Can you read them?"
+    - "The fish know what is coming. Watch their behavior."
+    - "I sense... change. The kind that brings opportunity."
+
+  player_ask_legendary:
+    - "The legendary ones... they exist. I have seen them in my visions."
+    - "Legends are merely truths we have forgotten how to see."
+    - "The Crystal Koi... the Ghost Salmon... they choose who finds them."
+    - "To catch a legend, you must become one with the water."
+
+  player_ask_help:
+    - "You seek knowledge? Close your eyes. What do you hear?"
+    - "The answer you need is not in my words. It is in the water."
+    - "I will share what the river has taught me. If you are ready to listen."
+    - "Wisdom cannot be given. Only discovered. Let me guide your discovery."
+
+  giving_quest:
+    intro:
+      - "The water has shown me something. A task that needs doing."
+      - "I sense an opportunity. For both of us."
+      - "There is something I must ask. If you are willing."
+    rare_fish_report:
+      - "A rare spirit has been seen in the eastern waters. I need to know its patterns. For... research."
+      - "The Ghost Salmon was spotted at dusk. I need someone to verify. My eyes are not what they were. Well, they are. But still."
+    weather_observation:
+      - "The weather is changing. I need someone to document how the fish respond. Science meets spirit."
+      - "Storm coming. The fish behave differently. Record what you see."
+    legendary_seek:
+      - "I have had a vision of the Crystal Koi. Go to the deep trench during the next storm. Report what you sense."
+      - "The Leviathan stirs. It has been generations. I need eyes on the western reef."
+    completion:
+      - "You have seen what I sensed. The water speaks through you now."
+      - "The knowledge you gathered is valuable. For both of us."
+      - "You have done well. The spirits are pleased. I am too."
+
+  farewell:
+    - "Go with the current. Not against it. Until we meet again."
+    - "The water will still be here when you return. So will I. Probably."
+    - "May your nets be full and your heart be light."
+    - "The fish are listening. Come back when you have stories to tell."
+
+# Gift preferences - what Nana Kiko loves, likes, and hates
+gifts:
+  loved:
+    - ancient_artifact
+    - crystal
+    - herbs
+    - rare_flower
+    - moonstone
+    - ancient_scroll
+    - spirit_charm
+    - incense
+
+  liked:
+    - tea
+    - candle
+    - any_fish
+    - feather
+    - shell
+    - driftwood
+    - quartz
+
+  neutral:
+    - bread
+    - apple
+    - coal
+    - iron_ingot
+    - stick
+
+  hated:
+    - loud_item
+    - tech_gadget
+    - explosive
+    - pollutant
+    - plastic
+
+# Friendship thresholds and unlocks
+friendship:
+  0:
+    name: Seeker
+    points: 0
+    description: Nana Kiko senses potential in you. The water agrees.
+  1:
+    name: Student
+    points: 10
+    description: Nana Kiko sees you are learning to listen.
+    unlocks:
+      - type: dialogue
+        description: Basic weather wisdom
+  2:
+    name: Listener
+    points: 25
+    description: Nana Kiko acknowledges your growing understanding.
+    unlocks:
+      - type: predictions
+        description: Daily fishing predictions
+        predictions:
+          - weather
+          - fish_activity
+          - best_time
+  3:
+    name: Initiate
+    points: 50
+    description: Nana Kiko trusts you with weather forecasts.
+    unlocks:
+      - type: forecast
+        description: Weather forecasts (85% accuracy)
+        accuracy: 0.85
+        advanceHours: 24
+  4:
+    name: Adept
+    points: 100
+    description: Nana Kiko shares deeper secrets of the water.
+    unlocks:
+      - type: locations
+        description: Advanced fishing spots
+        locations:
+          - moonlit_cove
+          - deep_trench
+          - spirit_pool
+  5:
+    name: Scholar
+    points: 150
+    description: Nana Kiko reveals legendary fish knowledge.
+    unlocks:
+      - type: legendary
+        description: Legendary fish hints
+        hints:
+          - crystal_koi
+          - ghost_salmon
+          - leviathan
+          - golden_trout
+  6:
+    name: Mystic
+    points: 200
+    description: Nana Kiko shares the deepest secrets of special conditions.
+    unlocks:
+      - type: secret_spots
+        description: Secret fishing spots during special conditions
+        spots:
+          - timefall_pool
+          - spirit_grove
+          - ancient_reef
+  7:
+    name: Master
+    points: 300
+    description: Nana Kiko reveals all legendary locations. You are one with the water.
+    unlocks:
+      - type: mastery
+        description: All legendary fish locations
+        legendaryLocations:
+          - crystal_koi_spawning
+          - ghost_salmon_passage
+          - leviathan_depths
+
+# Personal story fragments (unlocked at friendship 4)
+story:
+  long_life:
+    trigger: friendship_4
+    fragments:
+      - "I have fished these waters for ninety years. The fish are my teachers. The water, my classroom."
+      - "My grandmother taught me to read the waves. Her grandmother taught her. We have always been here."
+      - "I once caught a fish that spoke. It thanked me and swam away. Some things are not meant to be kept."
+      - "The village elders say I will live until I catch the One Fish. I have not caught it yet. It is not my time."
+      - "Age is just a number. A very large number, in my case. But the water keeps me young."
+    final_gift: nana_kikos_crystal_pendant
+
+# Personality traits
+personality:
+  primary: mystic
+  secondary: mentor
+  hidden: playful
+
+  traits:
+    - enigmatic
+    - patient
+    - wise
+    - cryptic
+    - occasionally_mischievous
+
+  voice_style: "Calm, measured, uses metaphors and proverbs, speaks slowly with meaningful pauses"
+
+  quirks:
+    - Speaks in riddles that turn out to be accurate
+    - Appears to listen to things no one else hears
+    - Never seems to age
+    - Predicts weather with uncanny accuracy
+    - Sometimes laughs at jokes only she understands
+
+# Special abilities
+abilities:
+  weather_prediction:
+    accuracy: 0.9
+    advance_hours: 24
+  rare_fish_sense:
+    enabled: true
+    description: "Can sense when rare fish are active"
+  legendary_knowledge:
+    enabled: true
+    description: "Knows the habits and locations of legendary fish"
+
+# Interaction rules
+rules:
+  max_daily_gifts: 1
+  chat_cooldown_seconds: 4
+  greeting_cooldown_seconds: 400
+  prefers_rain: true
+  avoid_sun: false

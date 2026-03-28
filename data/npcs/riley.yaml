@@ -1,0 +1,263 @@
+# Riley Chen - The Ambitious Competitor
+# Located at the competition dock in Sitka Sound
+
+name: Riley Chen
+archetype: competitor
+
+# Appearance and spawn position
+appearance:
+  skin: riley_competitor_fisher
+  description: A confident 28-year-old with athletic build and fierce competitive eyes. Always has fishing gear within reach and a self-assured smirk.
+
+position:
+  x: 120
+  y: 65
+  z: 95
+  world: world
+
+# Schedule - where Riley can be found at different times
+schedule:
+  dawn: competition_dock
+  day: competition_dock
+  dusk: competition_dock
+  night: training_area
+
+# Time-based locations
+locations:
+  competition_dock:
+    description: The competitive fishing dock
+    position:
+      x: 120
+      y: 65
+      z: 95
+    radius: 20
+  training_area:
+    description: Private training spot
+    position:
+      x: 85
+      y: 64
+      z: 150
+    radius: 15
+
+# Dialogue templates
+dialogue:
+  greeting:
+    morning:
+      - "Early bird catches the fish. But I catch MORE fish."
+      - "Up before dawn? That is dedication. Or desperation. Either way, I respect it."
+      - "Perfect morning for setting records. My records."
+    afternoon:
+      - "Afternoon! Perfect time to beat some personal bests. YOUR personal bests."
+      - "Midday sun? Not a problem for me. I fish in any conditions."
+      - "Still fishing? Good. The more you practice, the more impressive my victories."
+    evening:
+      - "Evening bite is PRIME time. I have already caught twenty today. How about you?"
+      - "Dusk fishing. My favorite. The fish cannot see my superiority coming."
+      - "Not quitting yet? I respect the persistence. The results? We will see."
+    night:
+      - "Night owl, huh? I train at night. Just finished actually."
+      - "*checks stopwatch* Night fishing is for focus. And showing off."
+      - "Out late? Dedication. I like it. Still going to beat you tomorrow though."
+
+  idle:
+    - "*checks personal records* Not bad. Could be better."
+    - "*adjusts competitive fishing gear*"
+    - "Who holds the record now? Oh right. Me."
+    - "*stretches* Competition never rests. Neither do I."
+    - "That fish looked at me wrong. I am going to catch it."
+    - "Practice makes perfect. I am already perfect. But practice anyway."
+
+  player_catch:
+    common:
+      - "A catch. Small. Like your chances against me."
+      - "At least you are not coming back empty-handed. Small victories."
+      - "That one would barely feed a cat. I caught bigger for breakfast."
+      - "Keep trying. Someone has to come in second place."
+    uncommon:
+      - "Now that is decent. For you."
+      - "Better than average. Not MY average, but still."
+      - "You are improving. I almost noticed."
+      - "Not bad. I mean that. Grudgingly."
+    rare:
+      - "A rare one! Okay. I am... slightly impressed."
+      - "That is not easy to catch. Did you get lucky or SKILLED?"
+      - "Hmm. Perhaps you are becoming actual competition."
+      - "Finally, something worth bragging about. I will do the bragging for you."
+    legendary:
+      - "A legendary catch! I... wow. Okay. That is actually impressive."
+      - "By the tides... I might need to step up my game."
+      - "Okay. You have my attention. And a tiny bit of respect."
+      - "I am not jealous. I am MOTIVATED. Same thing, really."
+
+  player_beat_record:
+    - "You... beat my record? That was... a fluke. Obviously."
+    - "Okay. FINE. You won this round. Rematch. NOW."
+    - "*nervous laugh* Good job. Really. I mean it. Mostly."
+    - "New personal record for you! My old personal record. I will get it back."
+
+  player_ask_help:
+    - "You want tips? Fine. But do not blame me when you still lose."
+    - "Advice from the champion? Coming right up. Listen carefully."
+    - "I guess I can share SOME secrets. The non-essential ones."
+    - "Fine. Watch and learn. Then try not to forget everything."
+
+  giving_quest:
+    intro:
+      - "I have a challenge for you. If you think you can handle it."
+      - "Competition opportunity. Interested? Of course you are."
+      - "There is something I need help with. Not that I NEED help. Just want it."
+    speed_fishing:
+      - "Speed fishing challenge. Ten fish in five minutes. Think you can do it?"
+      - "I hold the speed record. Want to try to beat it? Spoiler: you will not."
+    tournament_prep:
+      - "Weekly tournament coming up. I need a practice partner. You in?"
+      - "Competition practice. I go easy on you. Maybe."
+    rival_investigation:
+      - "There is a fisherman at the eastern rocks claiming to be better than me. Go... check. For research."
+      - "Someone is challenging my record. Investigate. Report back. Discreetly."
+    completion:
+      - "Done? Not bad. Actually, that was... good work."
+      - "You finished. I am... not disappointed. That is a compliment."
+      - "Completed. Nice. I mean, I would have done it faster, but still."
+      - "Impressive. I am using that word. You earned it."
+
+  farewell:
+    - "Leaving already? Probably for the best. I was about to set another record."
+    - "See you next time. Try to improve. Makes beating you more meaningful."
+    - "Off you go. Do not forget who the champion is. Me. It is me."
+    - "Later! Practice hard. I need worthy competition."
+    - "Good luck out there! You will need it. Against me."
+
+# Gift preferences - what Riley loves, likes, and hates
+gifts:
+  loved:
+    - trophy
+    - gold_medal
+    - competition_rod
+    - champion_belt
+    - energy_drink
+    - protein_bar
+    - stopwatch
+
+  liked:
+    - fishing_rod
+    - any_fish
+    - bait
+    - tackle
+    - fitness_item
+    - sport_equipment
+
+  neutral:
+    - bread
+    - apple
+    - coal
+    - iron_ingot
+    - stick
+    - string
+
+  hated:
+    - participation_trophy
+    - consolation_prize
+    - pity_gift
+    - handkerchief
+    - sad_note
+
+# Friendship thresholds and unlocks
+friendship:
+  0:
+    name: Rival
+    points: 0
+    description: Riley sees you as competition. Distant, dismissive competition.
+  1:
+    name: Acquaintance
+    points: 10
+    description: Riley knows your name. Uses it when bragging.
+    unlocks:
+      - type: dialogue
+        description: Competition tips
+  2:
+    name: Friendly Rival
+    points: 25
+    description: Riley almost respects you. Almost.
+    unlocks:
+      - type: events
+        description: Weekly tournaments unlocked
+        events:
+          - weekly_tournament
+          - speed_fishing
+  3:
+    name: Respected Rival
+    points: 50
+    description: Riley genuinely acknowledges your skill.
+    unlocks:
+      - type: discount
+        description: 15% competition equipment discount
+        discount: 0.15
+        items:
+          - competition_rod
+          - speed_reel
+          - pro_bait
+  4:
+    name: Training Partner
+    points: 100
+    description: Riley sees you as a true competitor and friend.
+    unlocks:
+      - type: activities
+        description: Personal training sessions
+        activities:
+          - training_session
+          - technique_lesson
+  5:
+    name: True Rival
+    points: 200
+    description: Riley considers you a lifelong competitor and friend.
+    unlocks:
+      - type: story
+        description: Personal insecurities revealed
+        story: insecurity_story
+      - type: items
+        description: Riley's championship rod
+        items:
+          - rileys_championship_rod
+
+# Personal story fragments (unlocked at friendship 5)
+story:
+  insecurity:
+    trigger: friendship_5
+    fragments:
+      - "The truth? I push so hard because I am terrified of being average."
+      - "My parents were both champions. I feel like I have to prove I belong."
+      - "I practice at 4am because I am scared someone is practicing harder."
+      - "When you beat me... I was secretly happy. It means I am not alone at the top."
+      - "This rod was my mother's. She gave it to me before she retired. Take care of it."
+    final_gift: rileys_championship_rod
+
+# Personality traits
+personality:
+  primary: competitive
+  secondary: insecure
+  hidden: supportive
+
+  traits:
+    - ambitious
+    - boastful
+    - perfectionist
+    - secretly_insecure
+    - fiercely_loyal
+
+  voice_style: "Confident, uses sports metaphors, occasional nervous laughter when outdone"
+
+  quirks:
+    - Checks personal records constantly
+    - Gets flustered when outperformed
+    - Practices at odd hours secretly
+    - Brags but celebrates others' wins quietly
+    - Keeps a journal of everyone who beats them
+
+# Interaction rules
+rules:
+  max_daily_gifts: 1
+  chat_cooldown_seconds: 3
+  greeting_cooldown_seconds: 300
+  prefers_rain: false
+  avoid_sun: false

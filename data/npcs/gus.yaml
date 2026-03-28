@@ -1,0 +1,347 @@
+# Gus Morrison - The Friendly Tackle Shop Owner
+# Located at Gus's Gear shop in Sitka Sound
+
+name: Gus Morrison
+archetype: merchant
+
+# Appearance and spawn position
+appearance:
+  skin: gus_merchant
+  description: A cheerful, middle-aged man with a perpetual smile and eager eyes. Wears a shop apron with many pockets, always has a sales pitch ready.
+
+position:
+  x: 150
+  y: 64
+  z: 50
+  world: world
+
+# Schedule - where Gus can be found at different times
+schedule:
+  dawn: shop_counter
+  day: shop_counter
+  dusk: shop_counter
+  night: back_room
+
+# Time-based locations
+locations:
+  shop_counter:
+    description: Gus's Gear tackle shop counter
+    position:
+      x: 150
+      y: 64
+      z: 50
+    radius: 10
+  back_room:
+    description: The shop's back room inventory
+    position:
+      x: 152
+      y: 64
+      z: 48
+    radius: 5
+
+# Dialogue templates
+dialogue:
+  greeting:
+    morning:
+      - "Good morning! Ready to gear up? New day, new fish, new purchases!"
+      - "Rise and shine! The fish are waiting and so is my inventory!"
+      - "Early shopper! I love early shoppers. They buy things. Please buy things."
+    afternoon:
+      - "Afternoon! Perfect time for some retail therapy! Fishing retail therapy!"
+      - "Hey there! Looking for gear? I have got gear. So much gear."
+      - "Welcome! The fish are biting and I am selling!"
+    evening:
+      - "Evening! Still open! Always happy to make a sale!"
+      - "You are still up? So am I! Coincidence? I think NOT. It is business hours!"
+      - "Night fishing needs night gear! I have got you covered!"
+    night:
+      - "Night owl shopper? My favorite kind! Well, all shoppers are my favorite."
+      - "Open late for dedicated fishers! And dedicated buyers. Mostly buyers."
+      - "You need something? I probably have it. If not, I can get it. For a price."
+
+  idle:
+    - "*organizes inventory* So many beautiful products..."
+    - "*checks price tags* Competitive prices. Very competitive."
+    - "What should I put on sale today? Everything? Yes, everything."
+    - "*polishes fishing rods* Shiny things sell better."
+    - "I love my job. I love fish. I love commerce."
+    - "*hums a tune that sounds like a cash register*"
+
+  player_catch:
+    common:
+      - "Nice catch! Now imagine catching MORE with better gear!"
+      - "Good fish! Speaking of fish, have you seen my bait selection?"
+      - "That will do! But with the premium rod, it would do BETTER."
+      - "Solid catch! Want to sell it? I offer fair prices. Fair-ish."
+    uncommon:
+      - "Ooh, nice one! Want gear to catch MORE like that?"
+      - "Quality fish! Quality fish deserve quality equipment. Which I sell!"
+      - "That is a good catch! I have got gear that makes good catches EASIER."
+      - "Impressive! You should upgrade. I should sell you an upgrade. Perfect!"
+    rare:
+      - "WOW! Rare fish! I have got the PERFECT preservation case for that!"
+      - "That is incredible! Speaking of incredible, check out my rare item selection!"
+      - "Rare catch deserves rare celebration! And by celebration I mean shopping!"
+      - "Amazing! You are clearly skilled. Enhance that skill with premium gear!"
+    legendary:
+      - "LEGENDARY! That is worth a fortune! I mean, congratulations!"
+      - "Incredible catch! I would frame that. I sell frames, by the way."
+      - "A legend! You need legendary equipment for legendary catches. I have some!"
+      - "Wow! Just... wow! Can I take a picture? For marketing purposes!"
+
+  player_ask_help:
+    - "Advice? FREE advice? Well, since you asked nicely..."
+    - "Let me tell you about fishing. And about the products that help with fishing."
+    - "I have fished these waters for decades. Let me share what works. And what I sell."
+    - "Knowledge is power. And gear is POWERFUL knowledge. Something like that."
+
+  player_buy:
+    small:
+      - "Thanks for the purchase! Every sale counts! Really!"
+      - "Appreciate it! Come back when you need more!"
+      - "Small purchases add up! To friendship! And revenue!"
+    medium:
+      - "Great choice! You will not regret this! Probably!"
+      - "Solid sale! I mean, solid purchase! For you!"
+      - "This is going to help your fishing so much! And my cash flow!"
+    large:
+      - "WOW! Big spender! I LOVE IT! Let me get that wrapped!"
+      - "Excellent choice! Premium customer gets premium service!"
+      - "This is fantastic! You will not regret it! Cha-ching!"
+
+  player_sell_fish:
+    - "Nice catch! Let me give you a fair price. Fair-ish. Competitive."
+    - "Selling to Gus means great prices! Well, decent prices. Market rates."
+    - "What have you got there? I will take it! For credits, obviously."
+    - "I buy fish! Best prices in town! There is no other buyer in town, but still!"
+
+  player_no_money:
+    - "No credits? That is okay! I believe in you! Come back richer!"
+    - "Budget tight? I have got affordable options! And payment plans! Maybe."
+    - "Empty pockets? No problem! Window shopping is free! For now."
+    - "Short on funds? I will hold your items! For a friend! A paying friend."
+
+  giving_quest:
+    intro:
+      - "I have a business opportunity! I mean, a QUEST!"
+      - "Need a favor! A profitable favor! For both of us!"
+      - "Something came up. Something you could help with. Something worthwhile!"
+    market_research:
+      - "Need someone to check competitor prices. There are no competitors. But check anyway!"
+      - "Go see what fish are selling for elsewhere. Research purposes!"
+    product_test:
+      - "New rod design. Needs field testing. Try it out! Tell me if it breaks!"
+      - "Experimental bait. Fish seem to love it. Or hate it. Find out which!"
+    supply_run:
+      - "Need rare materials from the eastern caves. Will pay in credits AND friendship!"
+      - "Special components for a custom order. Can you retrieve them?"
+    completion:
+      - "Perfect! This helps so much! Here is your reward. And a discount!"
+      - "Excellent work! Business is better because of you! Take this!"
+      - "Done and done! You are not just a customer. You are a PARTNER."
+
+  farewell:
+    - "Thanks for shopping! Come back soon! I mean it! Really mean it!"
+    - "Tight lines and full nets! And full shopping bags!"
+    - "See you next time! Bring friends! I need more friends. Customers. Same thing."
+    - "Good luck out there! And remember - better gear, better fish!"
+    - "Bye for now! Spend those credits wisely! On my gear!"
+
+# Gift preferences - what Gus loves, likes, and hates
+gifts:
+  loved:
+    - gold_ingot
+    - diamond
+    - emerald
+    - rare_fish
+    - business_ledger
+    - coffee
+    - coin_pouch
+    - quartz
+
+  liked:
+    - any_fish
+    - iron_ingot
+    - redstone
+    - bait
+    - fishing_rod
+    - prismarine
+
+  neutral:
+    - bread
+    - apple
+    - coal
+    - stick
+    - string
+
+  hated:
+    - stolen_goods
+    - competitor_coupon
+    - bad_review
+    - complaint_letter
+
+# Friendship thresholds and unlocks
+friendship:
+  0:
+    name: Customer
+    points: 0
+    description: Gus sees you as a potential sale. He likes potential.
+  1:
+    name: Regular
+    points: 10
+    description: Gus remembers your face. And your buying habits.
+    unlocks:
+      - type: discount
+        description: 5% discount on all items
+        discount: 0.05
+  2:
+    name: Valued Customer
+    points: 25
+    description: Gus gets excited when you walk in.
+    unlocks:
+      - type: notifications
+        description: Weekly deals and new stock notifications
+        notifications:
+          - sale_alert
+          - new_stock
+  3:
+    name: VIP Customer
+    points: 50
+    description: Gus gives you first pick of new inventory.
+    unlocks:
+      - type: inventory
+        description: Access to rare items
+        items:
+          - competition_rod
+          - premium_bait
+  4:
+    name: Premium Member
+    points: 100
+    description: Gus considers you a business partner and friend.
+    unlocks:
+      - type: discount
+        description: 10% discount + fish finder access
+        discount: 0.10
+        items:
+          - fish_finder
+  5:
+    name: Elite Partner
+    points: 150
+    description: Gus trusts you with custom orders.
+    unlocks:
+      - type: custom_orders
+        description: Custom orders available
+        specialOrders:
+          - specific_rod
+          - bulk_bait
+          - vintage_gear
+  6:
+    name: Business Associate
+    points: 200
+    description: Gus will hold items for you personally.
+    unlocks:
+      - type: discount
+        description: 15% discount + hold items service
+        discount: 0.15
+        canHoldItems: true
+  7:
+    name: Trusted Ally
+    points: 300
+    description: Gus shares his secret stock with you.
+    unlocks:
+      - type: secret_stock
+        description: Secret stock access
+        items:
+          - champion_rod
+          - legendary_lure
+          - lucky_charm
+
+# Personal story fragments (unlocked at friendship 4)
+story:
+  family_business:
+    trigger: friendship_4
+    fragments:
+      - "My grandfather started this shop in sixty-two. Said fishing brings people together. And money. Mostly money."
+      - "I have been running this place for thirty years. Never gets old. Neither do my jokes! My knees, though..."
+      - "I used to fish competitively. Then I realized selling gear was more profitable. And less wet."
+      - "Every item in this shop has a story. Ask me about any of them. I dare you. I double dare you."
+      - "My daughter wants to take over the business. I am not ready to retire. Too many sales to make."
+    final_gift: gus_lucky_register
+
+# Personality traits
+personality:
+  primary: merchant
+  secondary: socialite
+  hidden: generous
+
+  traits:
+    - enthusiastic
+    - sales_oriented
+    - genuinely_helpful
+    - chatty
+    - loyal
+
+  voice_style: "Chatty, enthusiastic, uses sales language, occasional 'cha-ching' moments"
+
+  quirks:
+    - Turns every conversation into a sales opportunity
+    - Gets genuinely excited about fishing gear
+    - Remembers every purchase every customer has made
+    - Occasionally gives secret discounts when no one is watching
+    - Refers to customers as 'future friends'
+
+# Shop inventory
+inventory:
+  rods:
+    - name: fishing_rod
+      basePrice: 50
+      rarity: common
+    - name: reinforced_rod
+      basePrice: 150
+      rarity: uncommon
+    - name: competition_rod
+      basePrice: 300
+      rarity: rare
+      unlockLevel: 3
+    - name: champion_rod
+      basePrice: 500
+      rarity: epic
+      unlockLevel: 7
+  bait:
+    - name: basic_bait
+      basePrice: 5
+      rarity: common
+    - name: enchanted_bait
+      basePrice: 25
+      rarity: uncommon
+    - name: premium_bait
+      basePrice: 50
+      rarity: rare
+      unlockLevel: 3
+    - name: legendary_lure
+      basePrice: 200
+      rarity: legendary
+      unlockLevel: 7
+  accessories:
+    - name: tackle_box
+      basePrice: 30
+      rarity: common
+    - name: weather_gear
+      basePrice: 75
+      rarity: uncommon
+    - name: fish_finder
+      basePrice: 200
+      rarity: rare
+      unlockLevel: 4
+    - name: lucky_charm
+      basePrice: 300
+      rarity: epic
+      unlockLevel: 7
+
+# Interaction rules
+rules:
+  max_daily_gifts: 1
+  chat_cooldown_seconds: 2
+  greeting_cooldown_seconds: 200
+  prefers_rain: false
+  avoid_sun: false
